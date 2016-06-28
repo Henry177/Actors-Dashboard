@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link href="WebApp.css" rel="stylesheet" type="text/css" />
+	<title>Test</title>
+	
+	<link rel="stylesheet" href="/GoogleMaterials/CSS/MaterialIcons.css" />
+	<link href="/GoogleMaterials/CSS/material.light_green-green.min.css" rel="stylesheet" type="text/css"/>
+	<script src="/GoogleMaterials/JS/material.min.js"></script>
+</h:head>
+<h:body>
+	<div class="mainDisplayArea">
+		<div class="content-grid mdl-grid mdl-grid--no-spacing">
+			<ui:repeat var="environment" value="#{TestBean.environments}">
+				<div class="content-column mdl-cell mdl-cell--3-col">
+					<center>
+			    		<h:outputLabel value="#{environment.name} [#{environment.version}]" /><br/>
+			    		<h:outputLabel value="#{environment.status}" />
+		    		</center>
+		    	</div>
+			</ui:repeat>	
+	
+			<ui:repeat var="problem" value="#{TestBean.problems}">
+				<div class="content-column mdl-cell mdl-cell--3-col">
+					<center>
+			    		<h:outputLabel value="#{problem.date}" /><br/>
+			    		<h:outputLabel value="#{problem.code}" />
+		    		</center>
+		    	</div>
+			</ui:repeat>	
+		</div>
+	</div>
+	<div class="messageSection">
+		<div style="margin: auto; margin-left: 20px; margin-top: 15px; height : 100%;">
+			<h:outputLabel class="message" value="#{TestBean.displayMessage}" />
+		</div>
+	</div>
+</h:body>
+</html>

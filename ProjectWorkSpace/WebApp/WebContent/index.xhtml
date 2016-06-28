@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link href="WebApp.css" rel="stylesheet" type="text/css" />
+	<title>Test</title>
+	
+	<link rel="stylesheet" href="/GoogleMaterials/CSS/MaterialIcons.css" />
+	<link href="/GoogleMaterials/CSS/material.light_green-green.min.css" rel="stylesheet" type="text/css"/>
+	<script src="/GoogleMaterials/JS/material.min.js"></script>
+</h:head>
+<h:body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs has-tabs">
+		<header class="mdl-layout__header is-casting-shadow">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">Dashboard controls</span>
+			</div>
+			<!-- Tabs -->
+			<div class="mdl-layout__tab-bar mdl-js-ripple-effect is-casting-shadows">
+				<a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+				<a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+				<a href="passiveDisplay.xhtml" class="mdl-layout__tab">Passive display</a>
+			</div>
+
+		</header>
+		
+		<main class="mdl-layout__content">
+			<!-- Panel 1 -->
+			<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+				<div class="page-content">
+					<ui:include src="TabContent/Tab1.xhtml" />
+				</div>
+			</section>
+			
+			<!-- Panel 2 -->
+			<section class="mdl-layout__tab-panel" id="fixed-tab-2">
+				<div class="page-content">
+					<ui:include src="TabContent/Tab2.xhtml" />
+				</div>
+			</section>
+		</main>
+	</div>
+</h:body>
+</html>

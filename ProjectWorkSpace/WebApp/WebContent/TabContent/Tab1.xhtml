@@ -1,0 +1,32 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">	
+	<div class="mainDisplayArea">
+		<div class="content-grid mdl-grid mdl-grid--no-spacing">
+			<ui:repeat var="environment" value="#{TestBean.environments}">
+				<div class="content-column mdl-cell mdl-cell--3-col">
+					<center>
+			    		<h:outputLabel value="#{environment.name} [#{environment.version}]" /><br/>
+			    		<h:outputLabel value="#{environment.status}" />
+		    		</center>
+		    	</div>
+			</ui:repeat>	
+	
+			<ui:repeat var="problem" value="#{TestBean.problems}">
+				<div class="content-column mdl-cell mdl-cell--3-col">
+					<center>
+			    		<h:outputLabel value="#{problem.date}" /><br/>
+			    		<h:outputLabel value="#{problem.code}" />
+		    		</center>
+		    	</div>
+			</ui:repeat>	
+		</div>
+	</div>
+	<div class="messageSection">
+		<div style="margin: auto; margin-left: 20px; margin-top: 15px; height : 100%;">
+			<h:outputLabel class="message" value="#{TestBean.displayMessage}" />
+		</div>
+	</div>
+</ui:composition>
