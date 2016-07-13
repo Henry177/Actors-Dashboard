@@ -1,16 +1,18 @@
 package bbd.dashboard.sessionbean;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import bbd.dashboard.DashboardUtils;
+import bbd.dashboard.Log;
+import bbd.dashboard.Result;
+import bbd.dashboard.dao.DAOType;
+import bbd.dashboard.dao.ProblemTicketDAO;
+import bbd.dashboard.dao.ProblemTicketDAOFactory;
+import bbd.dashboard.dto.ProblemTicketDTO;
 
 /**
  * Session Bean implementation class TestBean
@@ -20,6 +22,7 @@ import bbd.dashboard.DashboardUtils;
 public class TestBean implements Serializable {
 
 	private static final long serialVersionUID = -5016908257738925664L;
+	private final DAOType daoType = DAOType.FILE; 
 	private String name;
     /**
      * Default constructor. 
@@ -43,21 +46,23 @@ public class TestBean implements Serializable {
     	return tmp;
     }
     
-    public List<ProblemItem> getProblems() {
-    	List<ProblemItem> tmp = new ArrayList<ProblemItem>();
-    	
-    	tmp.add(new ProblemItem(null, "6.0.6.41.34"));
-    	try
-    	{
-	    	tmp.add(new ProblemItem(new SimpleDateFormat("dd/MM HH:mm:ss").parse("02/06 11:52:15"), "#127"));
-	    	tmp.add(new ProblemItem(new SimpleDateFormat("dd/MM HH:mm:ss").parse("02/06 12:16:45"), "#1458"));
-	    	tmp.add(new ProblemItem(new SimpleDateFormat("dd/MM HH:mm:ss").parse("02/06 13:12:05"), "#5426"));
-    	} catch(ParseException e) {
-    		DashboardUtils.log(e.getMessage());
-    	}
-    	
-    	return tmp;
+    public List<ProblemTicketDTO> getProblems() {
+    	Log.info("Start");
+    	ProblemTicketDAO dao = ProblemTicketDAOFactory.getInstance().getDAO(daoType);
+    	Result<List<ProblemTicketDTO>> result = dao.getProblemTickets();
+    	Log.info("result=" + result);
+    	Log.info("end");
+    	return result.getValue();	
     }
+    
+    public void addProblem(ProblemTicketDTO dto) {
+    	Log.infoEnabled = true;
+    	Log.info("Start");
+    	Log.info("code=" + dto.getCode());
+    	Log.info("end");
+    	Log.infoEnabled = false;
+    }
+   
     
     public String getDisplayMessage() {
     	return "06 June 09:15 – Quote not returning";
@@ -94,43 +99,4 @@ public class TestBean implements Serializable {
 			this.status = status;
 		}
     }
-
-	public class ProblemItem {
-		
-		private Date date;    	
-		private String code;
-		
-		public ProblemItem(Date date, String code) {
-			setDate(date);
-			setCode(code);
-		}
-
-		public String getDate() {
-			if(date == null)
-				return "[blank]";
-			return new SimpleDateFormat("dd/MM HH:mm:ss").format(date);
-		}
-
-		public void setDate(Date date) {
-			this.date = date;
-		}
-
-		public String getCode() {
-			if(date == null)
-				return "";
-			return "(" + code + ")";
-		}
-
-		public void setCode(String code) {
-			this.code = code;
-		}	
-		
-		public String getDescription() {
-			return "Some description";
-		}
-		
-		public String getImage() {
-			return "url('" + DashboardUtils.getIPandPort() + "GoogleMaterials/Images/programer.png')";
-		}
-	}
 }

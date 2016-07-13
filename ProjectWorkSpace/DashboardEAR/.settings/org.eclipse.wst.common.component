@@ -8,5 +8,8 @@
         <dependent-module archiveName="DashboardUtils.jar" deploy-path="/lib" handle="module:/resource/DashboardUtils/DashboardUtils">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="DashboardData.jar" deploy-path="/lib" handle="module:/resource/DashboardData/DashboardData">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
