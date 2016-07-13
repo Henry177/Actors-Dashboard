@@ -124,5 +124,13 @@ public class TestBean implements Serializable {
 		public void setCode(String code) {
 			this.code = code;
 		}	
+		
+		public String getDescription() {
+			return "Some description";
+		}
+		
+		public String getImage() {
+			return "url('" + DashboardUtils.getIPandPort() + "GoogleMaterials/Images/programer.png')";
+		}
 	}
 }
