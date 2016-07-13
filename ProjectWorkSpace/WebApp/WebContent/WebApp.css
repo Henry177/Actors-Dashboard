@@ -10,8 +10,8 @@ div.mainDisplayArea {
   	margin:  auto;
 }
 
-.content-grid {
-
+div.content-grid {
+	text-align: center;
 }
 
 div.mdl-cell {
@@ -38,3 +38,14 @@ label.message {
 	font-weight: bold;
 	color: #ffff00;
 }
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+}
+
+#file { display: none }

@@ -4,17 +4,32 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">	
 	
-	<div class="mdl-grid mdl-grid--no-spacing">
-		<div class="mdl-cell mdl-cell--6-col">
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--2-col" style="border: 0px;"> </div>
+		<div class="mdl-cell mdl-cell--4-col" style="border: 0px;">
 	    	<form action="#">
 			  	<div class="mdl-textfield mdl-js-textfield">
 			    	<input class="mdl-textfield__input" type="text" id="username"/>
-			    	<label class="mdl-textfield__label" for="username">Username</label>
+			    	<label class="mdl-textfield__label" for="username">Code</label>
 				</div>
 			</form>
 	    </div>
-	    <div class="mdl-cell mdl-cell--6-col">
-	    <!-- content here -->
+	    <div class="mdl-cell mdl-cell--2-col" style="border: 0px;">
+	    	<label>Screenshot: </label>
+		    <input type="file" id="file" />
+			<label for="file" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" style="margin: 10px;">
+			  <i class="material-icons">+</i>
+			</label>
+	    </div>
+	    <div class="mdl-cell mdl-cell--4-col" style="border: 0px;"> </div>
+	    <div class="mdl-cell mdl-cell--2-col" style="border: 0px;"> </div>
+	    <div class="mdl-cell mdl-cell--6-col" style="border: 0px;">
+	    	<form action="#">
+			  	<div class="mdl-textfield mdl-js-textfield">
+			    	<input class="mdl-textfield__input" type="text" id="username"/>
+			    	<label class="mdl-textfield__label" for="username">Description</label>
+				</div>
+			</form>
 	    </div>
 	</div>
 	

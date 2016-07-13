@@ -35,8 +35,16 @@
 		</div>
 	</div>
 	<div class="messageSection">
-		<div style="margin: auto; margin-left: 20px; margin-top: 15px; height : 100%;">
-			<h:outputLabel class="message" value="#{TestBean.displayMessage}" />
+		<div style="margin: auto; margin-top: 15px; height : 100%;">
+			<div class="content-grid mdl-grid mdl-grid--no-spacing">
+				<div class="content-column mdl-cell mdl-cell--6-col" style="border: 0; background: rgba(255,0,0,  0);">
+					<h:outputLabel class="message" value="#{TestBean.displayMessage}" />
+				</div>
+				<div class="content-column mdl-cell mdl-cell--5-col" style="border: 0; background: rgba(255,0,0,  0);"></div>
+				<div class="content-column mdl-cell mdl-cell--1-col" style="border: 0; background: rgba(255,0,0,  0);">
+					<a style="margin-right: 0; font-size: 15px;" href="/" >X</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </h:body>
