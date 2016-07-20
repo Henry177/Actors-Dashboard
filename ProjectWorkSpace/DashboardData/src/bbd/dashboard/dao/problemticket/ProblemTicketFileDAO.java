@@ -1,4 +1,4 @@
-package bbd.dashboard.dao;
+package bbd.dashboard.dao.problemticket;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,10 +27,8 @@ public class ProblemTicketFileDAO implements ProblemTicketDAO {
 		Log.info("Start");
 		
 		File problemsFolder = new File("../Problems");
-		Log.info("tmp=" + problemsFolder.getAbsoluteFile());
-		
-		
-		
+		Log.info("tmp=" + problemsFolder.getAbsoluteFile());		
+			
 		Log.info("End");
 		List<ProblemTicketDTO> list = new ArrayList<ProblemTicketDTO>();
 		Result<List<ProblemTicketDTO>> result = new Result<List<ProblemTicketDTO>>(list);

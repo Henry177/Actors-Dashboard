@@ -1,4 +1,4 @@
-package bbd.dashboard.dao;
+package bbd.dashboard.dao.problemticket;
 
 import java.util.List;
 

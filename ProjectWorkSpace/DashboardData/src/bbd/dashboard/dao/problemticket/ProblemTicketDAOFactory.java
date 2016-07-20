@@ -1,4 +1,6 @@
-package bbd.dashboard.dao;
+package bbd.dashboard.dao.problemticket;
+
+import bbd.dashboard.dao.DAOType;
 
 public class ProblemTicketDAOFactory {
 	
