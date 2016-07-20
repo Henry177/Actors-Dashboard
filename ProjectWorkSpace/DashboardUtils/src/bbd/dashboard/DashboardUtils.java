@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 
@@ -67,13 +68,19 @@ public class DashboardUtils {
 		return null;
 	}
 	
-	public static <T> T fromJson(String json, Class<T> objClass) {
+	/*public static <T> T fromJson(String json, Class<T> objClass) {
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		return gson.fromJson(json, objClass);
+	}*/
+	
+	public static <T> T fromJson(String json, Type objClass) {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		return gson.fromJson(json, objClass);
 	}
 	
-	public static String toJson(Object obj, Class<?> objClass) {
+	public static String toJson(Object obj, Type objClass) {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		return gson.toJson(obj, objClass);
