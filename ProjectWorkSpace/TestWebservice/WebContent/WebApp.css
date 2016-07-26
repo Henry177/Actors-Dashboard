@@ -1,0 +1,51 @@
+@CHARSET "ISO-8859-1";
+
+div.mainDisplayArea {
+	border-width: 5px;
+	border-bottom: 0px;
+	border-style: solid;
+	background-color: #ff8000;
+  	width: 90%;
+  	height: 850px;
+  	margin:  auto;
+}
+
+div.content-grid {
+	text-align: center;
+}
+
+div.mdl-cell {
+	border-width: 2px;
+	border-style: solid;
+	background-color: #ffffff;
+	height: 50px;
+
+}
+
+div.messageSection {
+	border-width: 5px;
+	border-top: 2px;
+	border-style: solid;
+	background-color: #ff0000;
+  	width: 90%;
+  	margin:  auto;
+  	height: 50px;
+
+}
+
+label.message {
+	font-size: 30px;
+	font-weight: bold;
+	color: #ffff00;
+}
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+}
+
+#file { display: none }

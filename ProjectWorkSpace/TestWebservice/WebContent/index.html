@@ -1,0 +1,44 @@
+<head>
+	<link href="WebApp.css" rel="stylesheet" type="text/css" />
+	<title>Test</title>
+	
+	<link rel="stylesheet" href="/GoogleMaterials/CSS/MaterialIcons.css" />
+	<link href="/GoogleMaterials/CSS/material.light_green-green.min.css" rel="stylesheet" type="text/css"/>
+	<script src="/GoogleMaterials/JS/material.min.js"></script>
+	<script src="JS/angular.min.js"></script>
+  	<script src="JS/HalloWorldJS.js"></script> 
+</head>
+<body ng-app="environmentsApp">
+	<div class="mainDisplayArea" ng-controller="EnvironmentsController">
+		<div class="content-grid mdl-grid mdl-grid--no-spacing">
+
+			<div class="content-column mdl-cell mdl-cell--3-col" ng-repeat="environment in environments">
+	    		<h4 style="font-size: 10px;">{{environment.Name}}</h4>
+     			<p style="font-size: 5px;">{{environment.Status}}</p>
+	    	</div>
+
+	
+	<!-- 	<ui:repeat var="problem" value="#{TestBean.problems}">
+				<div class="content-column mdl-cell mdl-cell--3-col">
+					<center>
+			    		<h:outputLabel value="#{problem.date}" /><br/>
+			    		<h:outputLabel value="#{problem.code}" />
+		    		</center>
+		    	</div>
+			</ui:repeat>	
+		</div>
+	</div>
+	<div class="messageSection">
+		<div style="margin: auto; margin-top: 15px; height : 100%;">
+			<div class="content-grid mdl-grid mdl-grid--no-spacing">
+				<div class="content-column mdl-cell mdl-cell--6-col" style="border: 0; background: rgba(255,0,0,  0);">
+					<h:outputLabel class="message" value="#{TestBean.displayMessage}" />
+				</div>
+				<div class="content-column mdl-cell mdl-cell--5-col" style="border: 0; background: rgba(255,0,0,  0);"></div>
+				<div class="content-column mdl-cell mdl-cell--1-col" style="border: 0; background: rgba(255,0,0,  0);">
+					<a style="margin-right: 0; font-size: 15px;" href="/" >X</a>
+				</div>
+			</div> -->
+		</div>
+	</div>	
+</body>
