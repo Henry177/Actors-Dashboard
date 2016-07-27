@@ -30,15 +30,7 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 	public Result<List<EnvironmentDTO>> getEnvironments() {
 		List<EnvironmentDTO> resultList = new ArrayList<EnvironmentDTO>();
 		//TODO swap for back end call;
-		String jsonObject = "{\n"
-				+ "\"Environment3\":{\"Status\":\"Aborted\",\"Name\":\"CoreProdDebug\"}\n"
-				+ ",\"Environment4\":{\"Status\":\"Disabled\",\"Name\":\"CoreTrunk\"}\n"
-				+ ",\"Environment5\":{\"Status\":\"Success\",\"Name\":\"CoreTrunkDebug\"}\n"
-				+ ",\"Environment6\":{\"Status\":\"Success\",\"Name\":\"DB Backup - ActTrunkTest\"}\n"
-				+ ",\"Environment0\":{\"Status\":\"Success\",\"Name\":\"CorePPPPCI\"}\n"
-				+ ",\"Environment1\":{\"Status\":\"Success\",\"Name\":\"CorePreProd\"}\n"
-				+ ",\"Environment2\":{\"Status\":\"Failed\",\"Name\":\"CorePreProdDebug\"}\n"
-				+ "}";
+		String jsonObject = getEnvironmentsJSON().getValue();
 		Log.info(jsonObject);
 		
 		Type type = new TypeToken<HashMap<String, EnvironmentDTO>>(){}.getType();
@@ -53,6 +45,21 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 		}
 		
 		Result<List<EnvironmentDTO>> result = new Result<List<EnvironmentDTO>>(resultList);
+		return result;
+	}
+
+	@Override
+	public Result<String> getEnvironmentsJSON() {
+		String json = "{\n"
+				+ "\"Environment3\":{\"Status\":\"Aborted\",\"Name\":\"CoreProdDebug\"}\n"
+				+ ",\"Environment4\":{\"Status\":\"Disabled\",\"Name\":\"CoreTrunk\"}\n"
+				+ ",\"Environment5\":{\"Status\":\"Success\",\"Name\":\"CoreTrunkDebug\"}\n"
+				+ ",\"Environment6\":{\"Status\":\"Success\",\"Name\":\"DB Backup - ActTrunkTest\"}\n"
+				+ ",\"Environment0\":{\"Status\":\"Success\",\"Name\":\"CorePPPPCI\"}\n"
+				+ ",\"Environment1\":{\"Status\":\"Success\",\"Name\":\"CorePreProd\"}\n"
+				+ ",\"Environment2\":{\"Status\":\"Failed\",\"Name\":\"CorePreProdDebug\"}\n"
+				+ "}";
+		Result<String> result = new Result<String>(json);
 		return result;
 	}
 }

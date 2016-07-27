@@ -22,5 +22,11 @@ public class EnvironmentDBDAO implements EnvironmentDAO {
 	public Result<List<EnvironmentDTO>> getEnvironments() {
 		// TODO call back end and get json from there		
 		return null;
+	}
+
+	@Override
+	public Result<String> getEnvironmentsJSON() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }
