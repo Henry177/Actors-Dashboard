@@ -59,7 +59,7 @@ public class DashboardUtils {
 			Gson gson = builder.create();
 			return gson.fromJson(json, objClass);
 		} catch (FileNotFoundException e) {
-			Log.error(e.getMessage());
+			Log.error(e);
 		} catch (IOException e) {
 			Log.error(e.getMessage());
 		} catch (JsonSyntaxException e) {
