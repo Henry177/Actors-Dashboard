@@ -1,0 +1,167 @@
+.left
+    {
+    text-align: left;
+    }
+
+.right
+    {
+    text-align: right;
+    float: right;
+    }
+
+.problemButton
+    {
+    border-radius: 15px;
+    padding: 5px 5px 5px 5px;
+    margin-right: 20px;
+    color:aliceblue;
+    background-color:cornflowerblue;
+    font-family: 'Roboto', sans-serif;
+    width:150px;
+    height:30px;
+    }
+
+#currentProblemsPageHeader
+    {
+    text-align: left;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    padding-top: 1px;
+    font-family: 'Roboto', sans-serif;
+    }
+
+#problemListPage
+    {
+    text-align: center;
+    border-color: cornflowerblue;
+    background-color: #EFF2FB;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: thick;
+    padding-bottom: 10px;
+    }
+
+.centered-table
+    {
+    margin-left:auto;
+    margin-right:auto;
+    width:750px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    }
+
+table 
+    {
+    border:none;
+    border-collapse: collapse;
+    border-radius: 5px;
+    }
+
+table th
+    {
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: cornflowerblue;
+    color:aliceblue;
+    }
+
+table th:first-child
+    {
+    border-left: none;
+    }
+
+table th:last-child
+    {
+    border-right: none;
+    }
+
+table td 
+    {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    }
+
+table td:first-child 
+    {
+    border-left: none;
+    }
+
+table td:last-child 
+    {
+    border-right: none;
+    }
+
+#selectedProblemDisplay
+    {
+    margin: 10px 0px 10px 0px;
+    background-color: #EFF2FB;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 3px;
+	padding-bottom: 20px;
+    }
+
+#problemHeader
+    {
+    font-size: 20px;
+    background: cornflowerblue;
+    color: aliceblue;
+    padding: 8px 10px 8px 10px;
+    font-family: 'Roboto', sans-serif;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+    }
+
+#problemContent
+    {
+    margin-left: auto;
+    margin-right: auto;
+	margin-top:10px;
+    width: 600px;    
+    }
+
+#descriptionDiv
+    {
+    display: inline-block;
+    width:510px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px;
+    }
+
+#selectedProblemTitle
+	{
+	display: inline-block;
+	background-color: white;
+	padding: 3px;
+	width: 555px;
+	border-radius: 5px;
+	}
+
+.editingOn
+    {
+    background-color: darkgrey;
+    }
+
+.hiddenDiv
+	{
+	visibility: hidden;
+	}
+
+.image-uploader
+	{
+  	height: 200px;
+  	text-align: center;;
+  	padding-top: 70px !important;
+	}
+
+.btn
+	{
+	background-color: darkgrey;
+	padding: 5px 10px 5px 10px;
+	margin-top: 10px;
+	}
+/* ng-cloak */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng.ng-cloak {
+    display: none !important;
+}
