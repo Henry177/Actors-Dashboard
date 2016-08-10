@@ -2,12 +2,13 @@
 
 div.mainDisplayArea {
 	border-width: 5px;
-	border-bottom: 0px;
+	border-bottom: 5px;
 	border-style: solid;
-	background-color: #ff8000;
+	background-color: #4699ff;
   	width: 90%;
   	height: 850px;
   	margin:  auto;
+  	margin-top: 10px;
 }
 
 div.content-grid {
@@ -15,10 +16,10 @@ div.content-grid {
 }
 
 div.mdl-cell {
-	border-width: 2px;
+	/* border-width: 2px;
 	border-style: solid;
-	background-color: #ffffff;
-	height: 50px;
+	background-color: #ffffff;*/
+	height: 80px;
 
 }
 
@@ -30,7 +31,6 @@ div.messageSection {
   	width: 90%;
   	margin:  auto;
   	height: 50px;
-
 }
 
 label.message {

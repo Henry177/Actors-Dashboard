@@ -1,5 +1,5 @@
 <head>
-	<link href="WebApp.css" rel="stylesheet" type="text/css" />
+	<link href="PassiveDisplay.css" rel="stylesheet" type="text/css" />
 	<title>Test</title>
 	
 	<link rel="stylesheet" href="/GoogleMaterials/CSS/MaterialIcons.css" />
@@ -10,11 +10,16 @@
 </head>
 <body ng-app="environmentsApp">
 	<div class="mainDisplayArea" ng-controller="EnvironmentsController">
-		<div class="content-grid mdl-grid mdl-grid--no-spacing">
-
-			<div class="content-column mdl-cell mdl-cell--3-col" ng-repeat="environment in environments" style="margin-left: 10px;">
-	    		<h4 style="font-size: 10px;">{{environment.Name}}</h4>
-     			<p style="font-size: 5px;">{{environment.Status}}</p>
+		<div class="content-grid mdl-grid">
+			<div class="content-column mdl-cell mdl-cell--3-col" ng-repeat="environment in environments">
+				<div class="mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title">
+				      <h2 class="mdl-card__title-text">{{environment.Name}}</h2>
+				    </div>
+				     <div class="mdl-card__supporting-text">
+				      <p>{{environment.Status}}</p>
+				    </div>
+				</div>
 	    	</div>
 
 	
