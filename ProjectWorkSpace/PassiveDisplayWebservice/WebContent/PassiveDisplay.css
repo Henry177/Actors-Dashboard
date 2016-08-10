@@ -18,9 +18,8 @@ div.content-grid {
 div.mdl-cell {
 	/* border-width: 2px;
 	border-style: solid;
-	background-color: #ffffff;*/
-	height: 80px;
-
+	background-color: #ffffff;
+	height: 100px;*/
 }
 
 div.messageSection {
@@ -39,13 +38,18 @@ label.message {
 	color: #ffff00;
 }
 
-.demo-card-square.mdl-card {
+.env-card-square.mdl-card {
   width: 320px;
-  height: 320px;
+  height: 30px;
 }
 
-.demo-card-square > .mdl-card__title {
-  color: #fff;
+.env-card-square > .mdl-card__title {
+  background-color: #a7d0fe;
+}
+
+.env-card-square > .mdl-card__supporting-text {
+	background-color: #ff7575;
+	height: 30px;
 }
 
 #file { display: none }

@@ -11,12 +11,12 @@
 <body ng-app="environmentsApp">
 	<div class="mainDisplayArea" ng-controller="EnvironmentsController">
 		<div class="content-grid mdl-grid">
-			<div class="content-column mdl-cell mdl-cell--3-col" ng-repeat="environment in environments">
-				<div class="mdl-card mdl-shadow--2dp">
-					<div class="mdl-card__title">
+			<div class="mdl-cell mdl-cell--3-col" ng-repeat="environment in environments"">
+				<div class="env-card-square mdl-shadow--2dp">
+					<div class="env-card-square mdl-card__title">
 				      <h2 class="mdl-card__title-text">{{environment.Name}}</h2>
 				    </div>
-				     <div class="mdl-card__supporting-text">
+				     <div class="mdl-card__supporting-text" ng-hide="environment.Status=='Success'">
 				      <p>{{environment.Status}}</p>
 				    </div>
 				</div>
