@@ -1,6 +1,7 @@
 package bbd.dashboard.webservice;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +16,14 @@ import bbd.dashboard.dao.environment.EnvironmentDAOFactory;
 /**
  * Servlet implementation class HalloWorld
  */
-@WebServlet("/HalloWorld")
-public class HalloWorld extends HttpServlet {
+@WebServlet("/Dashboard")
+public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HalloWorld() {
+    public Dashboard() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -9,8 +9,8 @@
   </module>
   <module>
     <web>
-      <web-uri>TestWebservice.war</web-uri>
-      <context-root>TestWebservice</context-root>
+      <web-uri>PassiveDisplayWebservice.war</web-uri>
+      <context-root>PassiveDisplay</context-root>
     </web>
   </module>
 </application>

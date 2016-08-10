@@ -3,10 +3,10 @@
 	<name>DashboardEAR</name>
 	<comment></comment>
 	<projects>
-		<project>TestWebservice</project>
 		<project>DashboardData</project>
 		<project>DashboardUtils</project>
 		<project>WebApp</project>
+		<project>PassiveDisplayWebservice</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
