@@ -2,8 +2,7 @@ package bbd.dashboard.dao.problemticket;
 
 import bbd.dashboard.dao.DAOType;
 
-public class ProblemTicketDAOFactory {
-	
+public class ProblemTicketDAOFactory {	
 	private static ProblemTicketDAOFactory instance;
 	
 	private ProblemTicketDAOFactory(){};
