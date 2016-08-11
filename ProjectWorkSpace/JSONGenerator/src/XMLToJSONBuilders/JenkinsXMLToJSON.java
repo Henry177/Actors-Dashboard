@@ -65,38 +65,45 @@ public class JenkinsXMLToJSON
 
 	@SuppressWarnings({ "unchecked" })
 	private static JSONObject getCoreJSONFromXML(NodeList jobs) throws IOException, ParserConfigurationException
-	{		
-		for (int i = 0; i < jobs.getLength(); i++)
+	{	
+		if(jobs != null)
 		{
-			Element currJob = (Element) jobs.item(i);
-			
-			String currJobName = currJob.getElementsByTagName("name").item(0).getTextContent();	
-			
-			String currJobURL = currJob.getElementsByTagName("url").item(0).getTextContent();
-			
-			GetXML(currJobURL + "api/xml");
-			NodeList builds = doc.getElementsByTagName("build");
-			Element thisBuild = (Element) builds.item(0);
-			String buildURL = thisBuild.getElementsByTagName("url").item(0).getTextContent();
-			
-			GetXML(buildURL + "api/xml");
-			
-			String building = doc.getElementsByTagName("building").item(0).getTextContent();				
-			String estimatedDuration = doc.getElementsByTagName("estimatedDuration").item(0).getTextContent();
-			String number = doc.getElementsByTagName("number").item(0).getTextContent();
-			String result = doc.getElementsByTagName("result").item(0).getTextContent();
-			String timeStamp = doc.getElementsByTagName("timestamp").item(0).getTextContent();
-			
-			JSONObject jobObject = new JSONObject();
-			
-			jobObject.put("Name", currJobName);
-			jobObject.put("Building", building);
-			jobObject.put("EstimatedDuration", estimatedDuration);
-			jobObject.put("Number", number);
-			jobObject.put("Result", result);
-			jobObject.put("Timestamp", timeStamp);
-			
-			jObj.put(currJobName, jobObject);
+			for (int i = 0; i < jobs.getLength(); i++)
+			{
+				Element currJob = (Element) jobs.item(i);
+				
+				String currJobName = currJob.getElementsByTagName("name").item(0).getTextContent();	
+				
+				String currJobURL = currJob.getElementsByTagName("url").item(0).getTextContent();
+				
+				GetXML(currJobURL + "api/xml");
+				NodeList builds = doc.getElementsByTagName("build");
+				Element thisBuild = (Element) builds.item(0);
+				String buildURL = thisBuild.getElementsByTagName("url").item(0).getTextContent();
+				
+				GetXML(buildURL + "api/xml");
+				
+				String building = doc.getElementsByTagName("building").item(0).getTextContent();				
+				String estimatedDuration = doc.getElementsByTagName("estimatedDuration").item(0).getTextContent();
+				String number = doc.getElementsByTagName("number").item(0).getTextContent();
+				String result = doc.getElementsByTagName("result").item(0).getTextContent();
+				String timeStamp = doc.getElementsByTagName("timestamp").item(0).getTextContent();
+				
+				JSONObject jobObject = new JSONObject();
+				
+				jobObject.put("Name", currJobName);
+				jobObject.put("Building", building);
+				jobObject.put("EstimatedDuration", estimatedDuration);
+				jobObject.put("Number", number);
+				jobObject.put("Result", result);
+				jobObject.put("Timestamp", timeStamp);
+				
+				jObj.put(currJobName, jobObject);
+			}
+		}
+		else
+		{
+			jObj.put("error", "failed to connect to Jenkins");
 		}
 		
 		return jObj;
