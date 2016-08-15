@@ -12,6 +12,16 @@
 	
 	<script type="text/javascript">
 		var app = angular.module('myApp',[]).controller('myController', function($scope,$filter){
+
+			$scope.theFile = null;
+			
+			 $scope.setFile = function(element) 
+			 	{
+			    $scope.$apply(function($scope) 
+					{
+			        $scope.theFile = element.files[0];
+			        });
+			    };
 			
 			$scope.idSelectedRow = null;
 			$scope.setSelected = function (index) 
@@ -60,6 +70,7 @@
 			 $scope.add = function(problemToAdd) 
 			 	{
 				problemToAdd.date = $filter('date')(new Date(), 'short');
+				problemToAdd.image = "images/" + $scope.theFile.name;
     			var index = $scope.problemsToAdd.indexOf(problemToAdd);
 			  	$scope.problemsToAdd.splice(index, 1);
     			$scope.problems.push(angular.copy(problemToAdd));
@@ -185,7 +196,7 @@
           <h4 class="modal-title">New Problem</h4>
         </div>
         <div class="modal-body">
-			<form class="form-horizontal" name="registrForm" role="form">
+			<form action="scripts/uploadPictureScript.php"  method="post" enctype="multipart/form-data">
 			Assignee:<input type="text" class="form-control" ng-model="problemToAdd.assignee" required>
 			Title:<input type="text" class="form-control" ng-model="problemToAdd.title" required>
 			Description:<textarea class="form-control" ng-model="problemToAdd.description" required></textarea>
@@ -193,9 +204,11 @@
 			Environment:<select class="form-control" ng-model="problemToAdd.environment" ng-options="x for x in environments" required> </select>
 			
 			Image:
-				
+            <label>Select a picture:</label>
+            <input type="file" name="fileName" onchange="angular.element(this).scope().setFile(this)"/>
+            
 			<br /> <br />
-			<button class="form-control" ng-click="add(problemToAdd)" data-dismiss="modal">Add</button>
+			<button class="form-control" type="submit" ng-click="add(problemToAdd)" data-dismiss="modal">Add</button>
 			</form>
         </div>
         <div class="modal-footer">
