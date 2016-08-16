@@ -4,18 +4,54 @@ import com.google.gson.annotations.SerializedName;
 
 public class EnvironmentDTO {
     	
-	@SerializedName(value = "Status")
-	private String status;
+	@SerializedName(value = "Building")
+	private boolean building;
+	
+	@SerializedName(value = "EstimatedDuration")
+	private String estimatedDuration;
+	
+	@SerializedName(value = "Number")
+	private String number;
+	
+	@SerializedName(value = "Timestamp")
+	private String timestamp;
 	
 	@SerializedName(value = "Name")
 	private String name;
 	
-	public String getStatus() {
-		return status;
+	@SerializedName(value = "Result")
+	private String result;
+
+	public boolean isBuilding() {
+		return building;
 	}
-	
-	public void setStatus(String status) {
-		this.status = status;
+
+	public void setBuilding(boolean building) {
+		this.building = building;
+	}
+
+	public String getEstimatedDuration() {
+		return estimatedDuration;
+	}
+
+	public void setEstimatedDuration(String estimatedDuration) {
+		this.estimatedDuration = estimatedDuration;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getName() {
@@ -24,11 +60,15 @@ public class EnvironmentDTO {
 
 	public void setName(String name) {
 		this.name = name;
-	}   	
-	
-	@Override
-	public String toString() {
-		return "{NameTest=" + name +", Status=" + status + "}";
 	}
-    
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 }
+
+

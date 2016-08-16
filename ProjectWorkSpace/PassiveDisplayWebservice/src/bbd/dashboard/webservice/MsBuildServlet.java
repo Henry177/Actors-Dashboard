@@ -1,6 +1,8 @@
 package bbd.dashboard.webservice;
-// Import required java libraries
+
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,37 +10,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
+import com.google.gson.reflect.TypeToken;
+
+import bbd.dashboard.DashboardUtils;
+import bbd.dashboard.dao.msbuild.MSBuildDAO;
+import bbd.dashboard.dto.MSBuildDTO;
 
 @WebServlet("/MsBuildServlet")
 public class MsBuildServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 3032697945058045637L;
-	private String environment;
-	private String revision;
-	private String status;
 	
-	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException	
-	{		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		response.setStatus(200);
-
-		JSONObject json = new JSONObject();
-		json.put("Environment", environment);
-		json.put("Revision", revision);
-		json.put("Status", statusString(Integer.parseInt(status)));
+	{	
+		MSBuildDAO dao = MSBuildDAO.getInstance();
 		
-		response.getWriter().append(json.toString());		
-		//send data to f.e
+		Type map = new TypeToken<HashMap<String, MSBuildDTO>>(){}.getType();
+		response.getWriter().append(DashboardUtils.toJson(dao.getDropStatus(), map));
 	}
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException 
 	{
-		environment = request.getParameter("environment");
-		revision = request.getParameter("revision");
-		status = request.getParameter("status");
+		MSBuildDAO dao = MSBuildDAO.getInstance();
+		
+		String environment = request.getParameter("environment");
+		String revision = request.getParameter("revision");
+		String status = request.getParameter("status");
+		
+		MSBuildDTO obj = new MSBuildDTO();
+		obj.setRevision(revision);
+		obj.setStatus(statusString(Integer.parseInt(status)));
+		dao.updateDropStatus(environment, obj);
+		
+		Type map = new TypeToken<HashMap<String, MSBuildDTO>>(){}.getType();
+		response.getWriter().append(DashboardUtils.toJson(dao.getDropStatus(), map));
 	}
 	
 	public String statusString(int status)

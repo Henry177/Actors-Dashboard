@@ -4,6 +4,7 @@ public class Log {
 
 	public static boolean infoEnabled;
 	public static boolean errorEnabled;
+	public static boolean logToFile = false;
 	
 	public static void info(Object info) {
 		if(infoEnabled) {
@@ -15,7 +16,7 @@ public class Log {
 				message += s.getMethodName() + " :: ";
 				message += info;
 				message = message.replace("<init>", "Constructor");
-				System.out.println(message);
+				log(message);
 			}
 		}
 	}
@@ -33,9 +34,14 @@ public class Log {
 					message += s.getMethodName() + " :: ";
 					message += error;
 					message = message.replace("<init>", "Constructor");
-					System.out.println(message);
+					log(message);
 				}
 			}			
 		}
+	}
+	
+	private static void log(String message) {
+		if(!logToFile)
+			System.out.print(message);
 	}
 }

@@ -22,6 +22,10 @@ div.mdl-cell {
 	height: 100px;*/
 }
 
+div.mdl-cell.sectionHeader {
+	background-color: #80ffff;
+}
+
 div.messageSection {
 	border-width: 5px;
 	border-top: 2px;

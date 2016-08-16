@@ -66,16 +66,18 @@ public class JenkinsXMLToJSON
 	@SuppressWarnings({ "unchecked" })
 	private static JSONObject getCoreJSONFromXML(NodeList jobs) throws IOException, ParserConfigurationException
 	{		
+		
 		for (int i = 0; i < jobs.getLength(); i++)
 		{
 			Element currJob = (Element) jobs.item(i);
-			
+			System.out.println("Element=" + currJob);
 			String currJobName = currJob.getElementsByTagName("name").item(0).getTextContent();	
 			
 			String currJobURL = currJob.getElementsByTagName("url").item(0).getTextContent();
 			
 			GetXML(currJobURL + "api/xml");
 			NodeList builds = doc.getElementsByTagName("build");
+			System.out.println(doc);
 			Element thisBuild = (Element) builds.item(0);
 			String buildURL = thisBuild.getElementsByTagName("url").item(0).getTextContent();
 			

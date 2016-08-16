@@ -76,6 +76,7 @@ public class DashboardUtils {
 	
 	public static <T> T fromJson(String json, Type objClass) {
 		GsonBuilder builder = new GsonBuilder();
+		//builder.registerTypeAdapter(EnvironmentDTO.class, new EnvironmentSerializer());
 		Gson gson = builder.create();
 		return gson.fromJson(json, objClass);
 	}

@@ -1,4 +1,5 @@
 <head>
+ 	<meta http-equiv="refresh" content="3; URL=http://localhost:8080/PassiveDisplay/">
 	<link href="PassiveDisplay.css" rel="stylesheet" type="text/css" />
 	<title>Test</title>
 	
@@ -10,18 +11,69 @@
 </head>
 <body ng-app="environmentsApp">
 	<div class="mainDisplayArea" ng-controller="EnvironmentsController">
+		<!-- MSBuild display grid -->
 		<div class="content-grid mdl-grid">
+			<div class="mdl-cell mdl-cell--1-col"></div>
+			<div class="mdl-cell mdl-cell--10-col sectionHeader">
+			      <h2 style="margin: auto;">MSBuild information</h2>
+		    </div>
+		    <div class="mdl-cell mdl-cell--1-col"></div>
+		    
+			<div class="mdl-cell mdl-cell--12-col" ng-hide="getLength(msbuilds) != 0">
+			      <h3>No MSBuild information posted</h3>
+		    </div>
+		    
+		    <div class="mdl-cell mdl-cell--3-col" ng-repeat="(key, msbuild) in msbuilds">
+				<div class="env-card-square mdl-shadow--2dp">
+					<div class="env-card-square mdl-card__title">
+				      <h2 class="mdl-card__title-text">{{key}}</h2>
+				    </div>
+			     	<div class="mdl-card__supporting-text">
+				      	<p>{{msbuild.revision}} - {{msbuild.status}}</p>
+				    </div>
+				</div>
+	    	</div>
+		</div>
+		
+		<!-- MSBuild environment grid -->
+		<div class="content-grid mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col" ng-hide="getLength(environments) != 0">
+			      <h3>No Environment information found</h3>
+		    </div>
+		
 			<div class="mdl-cell mdl-cell--3-col" ng-repeat="environment in environments"">
 				<div class="env-card-square mdl-shadow--2dp">
 					<div class="env-card-square mdl-card__title">
 				      <h2 class="mdl-card__title-text">{{environment.Name}}</h2>
 				    </div>
-				     <div class="mdl-card__supporting-text" ng-hide="environment.Status=='Success'">
-				      <p>{{environment.Status}}</p>
+				     <div class="mdl-card__supporting-text" ng-hide="environment.Result=='SUCCESS'">
+				      <p>{{environment.Result}}</p>
+				      <!--<p ng-show="environment.Building=='false'">{{environment.EstimatedDuration}}</p>
+				      <p ng-show="environment.Building=='true'">{{environment.Timestamp}}</p> --> 
 				    </div>
 				</div>
 	    	</div>
+		</div>
+		
+		<!-- RedMine environment grid -->
+		<div class="content-grid mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col" ng-hide="getLength(redminList) != 0">
+			      <h3>No redmine issues found</h3>
+		    </div>
+		
+				<div class="mdl-cell mdl-cell--3-col" ng-repeat="redmineItem in redminList.issues">
+					<div class="env-card-square mdl-shadow--2dp">
+						<div class="env-card-square mdl-card__title">
+					      <h2 class="mdl-card__title-text">#{{redmineItem.id}} - {{redmineItem.name}}</h2>
+					    </div>
+					     <div class="mdl-card__supporting-text">
+					      <!--<p ng-show="environment.Building=='false'">{{environment.EstimatedDuration}}</p>
+					      <p ng-show="environment.Building=='true'">{{environment.Timestamp}}</p> --> 
+					    </div>
+					</div>
+		    	</div>
 
+		</div>
 	
 	<!-- 	<ui:repeat var="problem" value="#{TestBean.problems}">
 				<div class="content-column mdl-cell mdl-cell--3-col">
@@ -44,6 +96,6 @@
 					<a style="margin-right: 0; font-size: 15px;" href="/" >X</a>
 				</div>
 			</div> -->
-		</div>
+		
 	</div>	
 </body>

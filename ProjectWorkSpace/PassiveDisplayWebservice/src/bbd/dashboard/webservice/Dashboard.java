@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bbd.dashboard.Log;
 import bbd.dashboard.Result;
 import bbd.dashboard.dao.DAOType;
 import bbd.dashboard.dao.environment.EnvironmentDAO;
@@ -25,14 +26,13 @@ public class Dashboard extends HttpServlet {
      */
     public Dashboard() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Log.infoEnabled = true;
 		EnvironmentDAO dao = EnvironmentDAOFactory.getInstance().getDAO(DAOType.FILE);
 		Result<String> result = dao.getEnvironmentsJSON();
 		response.getWriter().append(result.getValue());
@@ -42,7 +42,6 @@ public class Dashboard extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
