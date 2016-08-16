@@ -8,14 +8,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	<script src="ng-flow/dist/ng-flow-standalone.min.js"></script>
-	
-	<script src="flow/src/flow.js"></script>
-	
 	<script src="angular.js"></script>
 	
 	<script type="text/javascript">
 		var app = angular.module('myApp',[]).controller('myController', function($scope,$filter){
+
+			$scope.theFile = null;
+			
+			 $scope.setFile = function(element) 
+			 	{
+			    $scope.$apply(function($scope) 
+					{
+			        $scope.theFile = element.files[0];
+			        });
+			    };
+			
+			$scope.idSelectedRow = null;
+			$scope.setSelected = function (index) 
+				{
+   				$scope.idSelectedRow = index;
+				};
 			
 			$scope.environments = ["QA", "UAT", "ProdA"];
 			$scope.statuses = ["Pending", "Assigned", "Completed"];
@@ -58,6 +70,7 @@
 			 $scope.add = function(problemToAdd) 
 			 	{
 				problemToAdd.date = $filter('date')(new Date(), 'short');
+				problemToAdd.image = "images/" + $scope.theFile.name;
     			var index = $scope.problemsToAdd.indexOf(problemToAdd);
 			  	$scope.problemsToAdd.splice(index, 1);
     			$scope.problems.push(angular.copy(problemToAdd));
@@ -152,7 +165,7 @@
             <tr>
                 <th>Select</th><th>Title</th><th>Date Created</th><th>Status</th>
             </tr>
-            <tr ng-repeat="problem in problems" ng-click="selectProblem(problem)">
+            <tr ng-repeat="problem in problems" ng-click="selectProblem(problem); setSelected($index)" ng-class="{selectedRow: $index == idSelectedRow}">
                 <td><input type=checkbox ng-model="checkbox" ng-change="useCheckbox(problem)"></td><td>{{ problem.title }}</td><td>{{ problem.date }}</td><td>{{problem.status}}</td>
             </tr>
         </table>
@@ -183,7 +196,7 @@
           <h4 class="modal-title">New Problem</h4>
         </div>
         <div class="modal-body">
-			<form class="form-horizontal" name="registrForm" role="form">
+			<form action="scripts/uploadPictureScript.php"  method="post" enctype="multipart/form-data">
 			Assignee:<input type="text" class="form-control" ng-model="problemToAdd.assignee" required>
 			Title:<input type="text" class="form-control" ng-model="problemToAdd.title" required>
 			Description:<textarea class="form-control" ng-model="problemToAdd.description" required></textarea>
@@ -191,26 +204,11 @@
 			Environment:<select class="form-control" ng-model="problemToAdd.environment" ng-options="x for x in environments" required> </select>
 			
 			Image:
-			<div flow-init="{target: '/upload'}"
-     		flow-files-submitted="$flow.upload()"
-			flow-file-success="$file.msg = $message">
-
-  			<input type="file" flow-btn/> 
-				
-			
-			<span class="btn" flow-btn>Upload File</span>
-
-  			<table>
-				<tr ng-repeat="file in $flow.files">
-        			<td>{{$index+1}}</td>
-        			<td>{{file.name}}</td>
-        			<td>{{file.msg}}</td>
-    			</tr>
-  			</table>
-			</div>
-				
+            <label>Select a picture:</label>
+            <input type="file" name="fileName" onchange="angular.element(this).scope().setFile(this)"/>
+            
 			<br /> <br />
-			<button class="form-control" ng-click="add(problemToAdd)" data-dismiss="modal">Add</button>
+			<button class="form-control" type="submit" ng-click="add(problemToAdd)" data-dismiss="modal">Add</button>
 			</form>
         </div>
         <div class="modal-footer">
