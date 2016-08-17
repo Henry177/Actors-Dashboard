@@ -69,8 +69,22 @@
 			
 			 $scope.add = function(problemToAdd) 
 			 	{
-				problemToAdd.date = $filter('date')(new Date(), 'short');
-				problemToAdd.image = "images/" + $scope.theFile.name;
+				 var url = 'http://localhost:8080/PassiveDisplay/ProblemServlet';
+				 alert($scope.theFile.name);
+		        var fd = new FormData();        
+		        fd.append("file", $scope.theFile.name);          
+		        $http.post(url, fd)
+		        .success(function(data, status, headers, config) {
+		        	alert('success');
+		            console.log('success');
+		        })
+		        .error(function(data, status, headers, config) {
+		        	alert('error');
+		            console.log('error');
+		        });
+				 	
+				/*problemToAdd.date = $filter('date')(new Date(), 'short');
+				problemToAdd.image = $scope.theFile.name;
     			var index = $scope.problemsToAdd.indexOf(problemToAdd);
 			  	$scope.problemsToAdd.splice(index, 1);
     			$scope.problems.push(angular.copy(problemToAdd));
@@ -81,7 +95,7 @@
 				problemToAdd.status = null;
 				problemToAdd.environment = null;
 				problemToAdd.image = null;
-				problemToAdd.checked = false;
+				problemToAdd.checked = false;*/
   				}
 			 
 			$scope.selectProblem = function(problem)
