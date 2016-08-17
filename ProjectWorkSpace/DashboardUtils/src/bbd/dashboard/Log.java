@@ -42,6 +42,6 @@ public class Log {
 	
 	private static void log(String message) {
 		if(!logToFile)
-			System.out.print(message);
+			System.out.println(message);
 	}
 }

@@ -7,6 +7,9 @@ import bbd.dashboard.dto.EnvironmentDTO;
 
 public interface EnvironmentDAO {
 
-	Result<List<EnvironmentDTO>> getEnvironments();
-	Result<String> getEnvironmentsJSON();
+	String ENVIRONMENT_LIST_FILE_NAME = "../Config/EnvironmentFilter.json";
+	
+	Result<String> getEnvironments();
+	
+	Result<List<String>> getEnvironmentList();
 }

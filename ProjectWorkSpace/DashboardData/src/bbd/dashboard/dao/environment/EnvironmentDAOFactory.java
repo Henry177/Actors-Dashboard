@@ -16,8 +16,8 @@ public class EnvironmentDAOFactory {
 	}
 	
 	public EnvironmentDAO getDAO(DAOType type) {
-		if(type == DAOType.DB)
-			return EnvironmentDBDAO.getInstance(); 
+		/*if(type == DAOType.DB)
+			return EnvironmentDBDAO.getInstance(); */
 		
 		return EnvironmentFileDAO.getInstance();
 	}

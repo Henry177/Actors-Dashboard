@@ -83,20 +83,29 @@ public class JenkinsXMLToJSON
 				
 				GetXML(buildURL + "api/xml");
 				
-				String building = doc.getElementsByTagName("building").item(0).getTextContent();				
-				String estimatedDuration = doc.getElementsByTagName("estimatedDuration").item(0).getTextContent();
-				String number = doc.getElementsByTagName("number").item(0).getTextContent();
-				String result = doc.getElementsByTagName("result").item(0).getTextContent();
-				String timeStamp = doc.getElementsByTagName("timestamp").item(0).getTextContent();
-				
 				JSONObject jobObject = new JSONObject();
 				
+				NodeList tmp = doc.getElementsByTagName("building");
+				if((tmp != null) && (tmp.item(0) != null))
+					jobObject.put("Building", tmp.item(0).getTextContent());
+				
+				tmp = doc.getElementsByTagName("estimatedDuration");
+				if((tmp != null) && (tmp.item(0) != null))
+					jobObject.put("EstimatedDuration", tmp.item(0).getTextContent());
+				
+				tmp = doc.getElementsByTagName("number");
+				if((tmp != null) && (tmp.item(0) != null))
+					jobObject.put("Number", tmp.item(0).getTextContent());
+				
+				tmp = doc.getElementsByTagName("result");
+				if((tmp != null) && (tmp.item(0) != null))
+					jobObject.put("Result", tmp.item(0).getTextContent());
+				
+				tmp = doc.getElementsByTagName("timestamp");
+				if((tmp != null) && (tmp.item(0) != null))
+					jobObject.put("Timestamp", tmp.item(0).getTextContent());
+		
 				jobObject.put("Name", currJobName);
-				jobObject.put("Building", building);
-				jobObject.put("EstimatedDuration", estimatedDuration);
-				jobObject.put("Number", number);
-				jobObject.put("Result", result);
-				jobObject.put("Timestamp", timeStamp);
 				
 				jObj.put(currJobName, jobObject);
 			}
