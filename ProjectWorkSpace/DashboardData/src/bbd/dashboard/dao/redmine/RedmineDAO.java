@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.json.JSONObject;
-
 import bbd.dashboard.Log;
 
 public class RedmineDAO {

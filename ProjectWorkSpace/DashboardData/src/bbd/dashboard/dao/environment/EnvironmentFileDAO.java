@@ -1,12 +1,21 @@
 package bbd.dashboard.dao.environment;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import com.google.gson.reflect.TypeToken;
+
+import GeneratorDataProvider.JSONSourceObject;
+import MainProvider.JSONProvider;
+import bbd.dashboard.DashboardUtils;
 import bbd.dashboard.Log;
 import bbd.dashboard.Result;
+import bbd.dashboard.dao.StringFilterDAO;
 import bbd.dashboard.dto.EnvironmentDTO;
 
 public class EnvironmentFileDAO implements EnvironmentDAO {
@@ -20,51 +29,70 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 		return instance;
 	}
 	
-	private EnvironmentFileDAO(){}
+	private EnvironmentFileDAO() {
+		mStringFilter = new StringFilterDAO(ENVIRONMENT_LIST_FILE_NAME);
+	}
 
+	
+	private StringFilterDAO mStringFilter;
+	
 	@Override
-	public Result<List<EnvironmentDTO>> getEnvironments() {
-		Log.infoEnabled = true;
+	public Result<String> getEnvironments() {
 		Log.info("Start");
-		List<EnvironmentDTO> resultList = new ArrayList<EnvironmentDTO>();
 		String jsonObject = getEnvironmentsJSON().getValue();
 		Log.info(jsonObject);
 		
 		Map<String, EnvironmentDTO> map = new HashMap<String, EnvironmentDTO>(); 
-		//format json environment object to hash map
-		//Type type = TypeToken.get(HashMap<String, EnvironmentDTO>)
-		//map = DashboardUtils.fromJson(jsonObject, type);
-		Log.info(map);
+
+		Type type = new TypeToken<HashMap<String, EnvironmentDTO>>(){}.getType();
+		map = DashboardUtils.fromJson(jsonObject, type);
+		Log.info("map=" + map);
 		//add each element of the map to an array list
-		for(Map.Entry<String, EnvironmentDTO> entity: map.entrySet()) {
-			Log.info(entity.getKey());
-			resultList.add(entity.getValue());
-		}
+		if(!getEnvironmentList().isError())
+			for(String s: getEnvironmentList().getValue()) {
+				Log.info(s);
+				map.remove(s);
+			}
 		
-		Result<List<EnvironmentDTO>> result = new Result<List<EnvironmentDTO>>(resultList);
-		Log.info("End");
-		Log.infoEnabled = false;
+		Result<String> result = new Result<String>(DashboardUtils.toJson(map, type));
+		Log.info("End");		
 		return result;
 	}
 
-	@Override
-	public Result<String> getEnvironmentsJSON() {
+	private Result<String> getEnvironmentsJSON() {
 		String json = "";		
-		json = "{\n"
+		/*json = "{\n"
 				+ "\"CorCpp\":{\"Name\":\"CorCpp\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"SUCCESS\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"CorPreProd\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"Prod\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"BUILDING\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"Test\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"}\n"
-				+ "}";
+				+ "}";*/
 		
-		/*try {
+		try {
 			json = JSONProvider.GetJSONFor(JSONSourceObject.JenkinsCore).toJSONString();
 			Log.info(json);
 		} catch (ParserConfigurationException e) {
 		} catch (IOException e) {
-		}*/
+		}
 		
 		Result<String> result = new Result<String>(json);
+		return result;
+	}
+
+	@Override
+	public Result<List<String>> getEnvironmentList() {
+		Log.infoEnabled = true;
+		Log.info("Start");
+		Result<List<String>> result = new Result<>();
+		if(mStringFilter != null) {
+			result = new Result<>(mStringFilter.getFilterList());
+		} else {
+			result = new Result<>();
+			result.setErrorMessage("Failed to load filter");
+		}
+		Log.info("result=" + result);
+		Log.info("End");
+		Log.infoEnabled = false;
 		return result;
 	}
 }

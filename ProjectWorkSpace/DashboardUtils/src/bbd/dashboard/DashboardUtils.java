@@ -16,6 +16,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 public class DashboardUtils {	
+	
+	private static GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+	
 	public static String getIPandPort() {
 		try {
 			NetworkInterface tmp = NetworkInterface.getNetworkInterfaces().nextElement();
@@ -27,7 +30,7 @@ public class DashboardUtils {
 	}
 	
 	public static void writeJsonFile(String fileName, Object obj, Class<?> objClass) {
-		GsonBuilder builder = new GsonBuilder();
+		//GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
 		Gson gson = builder.create();
 		Log.info("start");
 		Log.info("filename=" + fileName);
@@ -37,13 +40,20 @@ public class DashboardUtils {
 		
 		try {
 			FileWriter writer= new FileWriter(fileName);
-			writer.write(gson.toJson(obj, objClass));
+			String json = "";
+			if(objClass == null)
+				json = obj.toString();
+			else
+				json = gson.toJson(obj, objClass);
+			writer.write(json);
 			writer.close();
 			Log.info("File saved: " + tmp.getAbsolutePath());
 		} catch (FileNotFoundException e) {
 			Log.error(e.getMessage());
+			Log.error(e);
 		} catch (IOException e) {
 			Log.error(e.getMessage());
+			Log.error(e);
 		}	
 		Log.info("end");
 	}
@@ -52,18 +62,25 @@ public class DashboardUtils {
 		try {			
 			FileInputStream fstream = new FileInputStream(fileName);
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-			String json = br.readLine();
+			String json = "";
+			String line;
+			while((line = br.readLine()) != null)
+				json += line;
+			
 			Log.info("json=" + json);
 			fstream.close();
-			GsonBuilder builder = new GsonBuilder();
-			Gson gson = builder.create();
+			//GsonBuilder builder = new GsonBuilder();
+			Gson gson = new Gson();//builder.create();
 			return gson.fromJson(json, objClass);
 		} catch (FileNotFoundException e) {
+			Log.error(e.getMessage());
 			Log.error(e);
 		} catch (IOException e) {
 			Log.error(e.getMessage());
+			Log.error(e);
 		} catch (JsonSyntaxException e) {
 			Log.error(e.getMessage());
+			Log.error(e);
 		}		
 		return null;
 	}
@@ -78,6 +95,8 @@ public class DashboardUtils {
 		GsonBuilder builder = new GsonBuilder();
 		//builder.registerTypeAdapter(EnvironmentDTO.class, new EnvironmentSerializer());
 		Gson gson = builder.create();
+		Log.info("objClass=" + objClass);
+		Log.info("json=" + json);
 		return gson.fromJson(json, objClass);
 	}
 	
