@@ -83,21 +83,15 @@ public class JenkinsXMLToJSON
 				
 				GetXML(buildURL + "api/xml");
 				
-				String building = doc.getElementsByTagName("building").item(0).getTextContent();				
-				String estimatedDuration = doc.getElementsByTagName("estimatedDuration").item(0).getTextContent();
-				String number = doc.getElementsByTagName("number").item(0).getTextContent();
-				String result = doc.getElementsByTagName("result").item(0).getTextContent();
-				String timeStamp = doc.getElementsByTagName("timestamp").item(0).getTextContent();
-				
 				JSONObject jobObject = new JSONObject();
 				
 				jobObject.put("Name", currJobName);
-				jobObject.put("Building", building);
-				jobObject.put("EstimatedDuration", estimatedDuration);
-				jobObject.put("Number", number);
-				jobObject.put("Result", result);
-				jobObject.put("Timestamp", timeStamp);
-				
+				jobObject.put("Building", GetItemValue("building"));
+				jobObject.put("EstimatedDuration", GetItemValue("estimatedDuration"));
+				jobObject.put("Number", GetItemValue("number"));
+				jobObject.put("Result", GetItemValue("result"));
+				jobObject.put("Timestamp", GetItemValue("timestamp"));
+
 				jObj.put(currJobName, jobObject);
 			}
 		}
@@ -107,5 +101,18 @@ public class JenkinsXMLToJSON
 		}
 		
 		return jObj;
+	}
+	
+	private String GetItemValue(String name)
+	{
+		var list = doc.getElementsByTagName(name);
+		if(list != null && list.item(0) != null)
+		{
+			return list.item(0).getTextContent();
+		}
+		else
+		{
+			return "";
+		}
 	}
 }
