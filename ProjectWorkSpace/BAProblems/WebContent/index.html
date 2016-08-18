@@ -7,12 +7,33 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
 	<script src="angular.js"></script>
 	
 	<script type="text/javascript">
-		var app = angular.module('myApp',[]).controller('myController', function($scope,$filter){
+		var app = angular.module('myApp',[]);
 
+		app.controller('myController',function($scope,$filter,$http){
+
+			$scope.attachedFile = function(element) {
+		        $scope.$apply(function($scope) {
+		            $scope.file = element.files[0];   
+		        });     
+		        console.log('file attached');
+		    };
+
+		    $scope.addFile = function() {
+		        var url = "${jboss.home.dir}/Problems";
+		        var fd = new FormData();        
+		        fd.append("file",$scope.file);          
+		        $http.post(url, fd,{headers: {'Content-Type':undefined}})
+		        .success(function(data, status, headers, config) {
+		            console.log('success');
+		        })
+		        .error(function(data, status, headers, config) {
+		            console.log('error');
+		        })
+		    };
+			
 			$scope.theFile = null;
 			
 			 $scope.setFile = function(element) 
@@ -29,8 +50,8 @@
    				$scope.idSelectedRow = index;
 				};
 			
-			$scope.environments = ["QA", "UAT", "ProdA"];
-			$scope.statuses = ["Pending", "Assigned", "Completed"];
+			$scope.environments = ["Trunk", "Pre-Production", "Production"];
+			$scope.statuses = ["Unassigned", "Assigned", "Resolved"];
 			
 			$scope.selectedProblem =
 				{
@@ -66,38 +87,7 @@
 				image: '',
 				checked: false
 				}];
-			
-			 $scope.add = function(problemToAdd) 
-			 	{
-				 var url = 'http://localhost:8080/PassiveDisplay/ProblemServlet';
-				 alert($scope.theFile.name);
-		        var fd = new FormData();        
-		        fd.append("file", $scope.theFile.name);          
-		        $http.post(url, fd)
-		        .success(function(data, status, headers, config) {
-		        	alert('success');
-		            console.log('success');
-		        })
-		        .error(function(data, status, headers, config) {
-		        	alert('error');
-		            console.log('error');
-		        });
 				 	
-				/*problemToAdd.date = $filter('date')(new Date(), 'short');
-				problemToAdd.image = $scope.theFile.name;
-    			var index = $scope.problemsToAdd.indexOf(problemToAdd);
-			  	$scope.problemsToAdd.splice(index, 1);
-    			$scope.problems.push(angular.copy(problemToAdd));
-				 
-				problemToAdd.title = null;
-				problemToAdd.assignee = null;
-				problemToAdd.description = null;
-				problemToAdd.status = null;
-				problemToAdd.environment = null;
-				problemToAdd.image = null;
-				problemToAdd.checked = false;*/
-  				}
-			 
 			$scope.selectProblem = function(problem)
 				{
 				$scope.selectedProblem = problem;
@@ -219,10 +209,10 @@
 			
 			Image:
             <label>Select a picture:</label>
-            <input type="file" name="fileName" onchange="angular.element(this).scope().setFile(this)"/>
+            <input type="file" name="file" onchange="angular.element(this).scope().setFile(this)"/>
             
 			<br /> <br />
-			<button class="form-control" type="submit" ng-click="add(problemToAdd)" data-dismiss="modal">Add</button>
+			<button class="form-control" ng-click="add(problemToAdd); addFile()" data-dismiss="modal">Add</button>
 			</form>
         </div>
         <div class="modal-footer">
