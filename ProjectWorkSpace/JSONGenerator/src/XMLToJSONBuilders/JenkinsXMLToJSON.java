@@ -90,7 +90,7 @@ public class JenkinsXMLToJSON
 				jobObject.put("EstimatedDuration", GetItemValue("estimatedDuration"));
 				jobObject.put("Number", GetItemValue("number"));
 				jobObject.put("Result", GetItemValue("result"));
-				jobObject.put("Timestamp", GetItemValue("timestamp"));
+				jobObject.put("Timestamp", GetItemValue("timestamp"))
 
 				jObj.put(currJobName, jobObject);
 			}
