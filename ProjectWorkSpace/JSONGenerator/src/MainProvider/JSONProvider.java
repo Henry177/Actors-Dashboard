@@ -22,7 +22,7 @@ public class JSONProvider
 		{
 		case JenkinsCore:
 		{
-			return JenkinsCoreJSON();
+			return JenkinsCoreJSON()
 		}
 		default:
 			return null;
