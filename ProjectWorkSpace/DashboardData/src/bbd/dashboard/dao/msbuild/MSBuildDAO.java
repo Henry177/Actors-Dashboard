@@ -24,6 +24,7 @@ public class MSBuildDAO
 	
 	public void updateDropStatus(String environment, MSBuildDTO info)
 	{
+		data.remove(environment);
 		data.put(environment, info);
 	}
 	
