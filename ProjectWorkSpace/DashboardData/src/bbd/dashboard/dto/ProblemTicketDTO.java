@@ -6,10 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 public class ProblemTicketDTO {
-	private String code;
+	private String status;
 	private Date date;
 	private String title;
 	private String description;
+	private String assignee;
+	private String enviroment;
+	private String id;
 	private List<String> images;
 	
 	public ProblemTicketDTO(String code, Date date, String title, String description) {
@@ -25,11 +28,11 @@ public class ProblemTicketDTO {
 		this("", null, "", "");
 	}
 
-	public String getCode() {
+	public String getStatus() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setStatus(String code) {
 		this.code = code;
 	}
 	
@@ -63,7 +66,37 @@ public class ProblemTicketDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public void setAssignee(String assign)
+	{
+		this.assignee =assign;
+	}
+	
+	public String getAssignee()
+	{
+		return assignee;
+	}
+	
+	public void setEnviroment(String enviroment)
+	{
+		this.enviroment = enviroment;
+	}
 
+	public String getEnviroment()
+	{
+		return enviroment;
+	}
+	
+	public void setID(int id)
+	{
+		this.id = id;
+	}
+	
+	public int getID()
+	{
+		return id;
+	}
+	
 	public List<String> getImages() {
 		return images;
 	}
