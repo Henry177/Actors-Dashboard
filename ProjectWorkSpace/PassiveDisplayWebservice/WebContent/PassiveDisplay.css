@@ -1,59 +1,101 @@
 @CHARSET "ISO-8859-1";
 
-div.mainDisplayArea {
-	border-width: 5px;
-	border-bottom: 5px;
-	border-style: solid;
-	background-color: #4699ff;
-  	width: 90%;
-  	height: 850px;
-  	margin:  auto;
-  	margin-top: 10px;
+body.MainDisplayArea {
+  	width: 99%;
+  	height: 98%;
+    font-size: 50;
+    font-family: monospace;
 }
 
-div.content-grid {
-	text-align: center;
+.BodyDiv {
+    height: 100%;
 }
 
-div.mdl-cell {
-	/* border-width: 2px;
-	border-style: solid;
-	background-color: #ffffff;
-	height: 100px;*/
-}
-
-div.mdl-cell.sectionHeader {
-	background-color: #80ffff;
-}
-
-div.messageSection {
-	border-width: 5px;
-	border-top: 2px;
-	border-style: solid;
-	background-color: #ff0000;
-  	width: 90%;
-  	margin:  auto;
-  	height: 50px;
-}
-
-label.message {
-	font-size: 30px;
+p.HeaderTextStyle {
 	font-weight: bold;
-	color: #ffff00;
+    font-size: 150%;
+	margin: auto;
 }
 
-.env-card-square.mdl-card {
-  width: 320px;
-  height: 30px;
+p.InfoTextStyle {
+	display: none;
+	font-weight: bold;
+    font-size: 100%;
+	margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.env-card-square > .mdl-card__title {
-  background-color: #a7d0fe;
+div.DropInfo table{
+	
 }
 
-.env-card-square > .mdl-card__supporting-text {
-	background-color: #ff7575;
-	height: 30px;
+div.CIInfo {
+	
 }
 
-#file { display: none }
+div.InfoSectionStyle {
+	text-align: center;
+	background-color: #53BDD7;
+    border-style: solid;
+    border-width: 2px;
+    min-height: 30%;
+	display: block;
+    padding-bottom: 10px;
+}
+
+div.RedmineSectionStyle {
+	text-align: center;
+	background-color: #DDCE9D;
+  	height: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-top-width: 1px;
+	display: block;    
+    padding-bottom: 10px;
+}
+
+div.ProblemSectionStyle {
+	text-align: center;
+	background-color: #F7B695;
+  	height: 10%;
+    border-style: solid;
+    border-width: 2px;
+    border-top-width: 1px;
+	display: block;
+    padding-bottom: 10px;
+}
+
+.TableStyle {
+	display: inline-block;
+	border: 1;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+    font-size: 100%;
+}
+
+.TableStyle td{
+	padding: 5px;
+}
+
+.DropInfoTableStyle {
+}
+
+.CITableStyle {
+}
+
+
+.BuildingStyle {
+	border-style: solid;
+	background-color: #7EFA69;
+}
+
+.BrokenStyle {
+	border-style: solid;
+	background-color: #FF5454;
+}
+
+.StableStyle {
+	border-style: solid;
+	background-color: #D7FFFD;
+}
