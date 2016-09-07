@@ -1,0 +1,93 @@
+@CHARSET "ISO-8859-1";
+
+body.MainDisplayArea {
+  	width: 99%;
+  	height: 98%;
+    font-size: 20;
+    font-family: monospace;
+	color: #f2994d;
+}
+
+.BodyDiv {
+    height: 100%;
+}
+
+p.HeaderTextStyle {
+	font-weight: bold;
+    font-size: 150%;
+	margin: auto;
+	margin-top: 10px;
+	color: black;
+}
+
+p.InfoTextStyle {	
+	font-weight: bold;
+    font-size: 100%;
+	margin-bottom: 10px;
+    margin-top: 10px;	
+}
+
+div.DropInfo table{
+	
+}
+
+div.CIInfo {
+	
+}
+
+div.InfoSectionStyle {
+	text-align: center;
+	background-color: black;
+    border-style: solid;
+    border-width: 2px;
+	display: block;
+	height: 98%;
+}
+
+div.RedmineSectionStyle {
+	text-align: center;
+	background-color: #DDCE9D;
+  	height: 62%;
+    border-style: solid;
+    border-width: 2px;
+    border-top-width: 1px;
+	display: none;    
+    padding-bottom: 10px;
+}
+
+div.ProblemSectionStyle {
+	text-align: center;
+	background-color: #F7B695;
+  	height: 10%;
+    border-style: solid;
+    border-width: 2px;
+    border-top-width: 1px;
+	display: none;
+    padding-bottom: 10px;
+}
+
+.TableStyle {
+	display: inline-block;
+	border: 1;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+    font-size: 100%;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:10px;	
+	min-width: 30%;
+}
+
+.TableStyle td{
+	padding: 5px;
+	color: black;
+}
+
+.DropInfoTableStyle {
+	background-color: #f2f3e7;
+}
+
+.CITableStyle {
+	margin-bottom:10px;
+}

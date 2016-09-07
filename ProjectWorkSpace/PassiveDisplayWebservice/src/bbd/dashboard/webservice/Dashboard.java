@@ -32,7 +32,6 @@ public class Dashboard extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Log.infoEnabled = true;
 		EnvironmentDAO dao = EnvironmentDAOFactory.getInstance().getDAO(DAOType.FILE);
 		Result<String> result = dao.getEnvironments();
 		response.getWriter().append(result.getValue());

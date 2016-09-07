@@ -6,7 +6,6 @@
 		<project>BAProblems</project>
 		<project>DashboardData</project>
 		<project>DashboardUtils</project>
-		<project>JSONGenerator</project>
 		<project>PassiveDisplayWebservice</project>
 	</projects>
 	<buildSpec>

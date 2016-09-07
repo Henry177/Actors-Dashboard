@@ -15,8 +15,8 @@ public class ProblemTicketDAOFactory {
 	}
 	
 	public ProblemTicketDAO getDAO(DAOType type) {
-		if(type == DAOType.DB)
-			return ProblemTicketDBDAO.getInstance(); 
+		/*if(type == DAOType.DB)
+			return ProblemTicketDBDAO.getInstance(); */
 		
 		return ProblemTicketFileDAO.getInstance();
 	}
