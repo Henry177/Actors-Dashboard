@@ -12,12 +12,12 @@ public class ProblemTicketDTO {
 	private String description;
 	private String assignee;
 	private String enviroment;
-	private String id;
+	private Int id;
 	private List<String> images;
 	
 	public ProblemTicketDTO(String code, Date date, String title, String description) {
 		super();
-		this.setCode(code);
+		this.getStatus(code);
 		this.setDate(date);
 		this.setTitle(title);
 		this.setDescription(description);
