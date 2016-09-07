@@ -1,4 +1,4 @@
-package GeneratorDataProvider;
+package bbd.dashboard.json.provider;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,22 +1,14 @@
-package MainProvider;
+package bbd.dashboard.json.provider;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.json.simple.JSONObject;
 
-import XMLToJSONBuilders.JenkinsXMLToJSON;
-import bbd.dashboard.Log;
+import bbd.dashboard.json.xmltojson.JenkinsXMLToJSON;
 
 public class JSONProvider 
 {	
-	public static void main(String[] args) throws ParserConfigurationException, IOException
-	{
-		Log.logToFile = false;
-		Log.infoEnabled = true;
-		System.out.println(GetJSON());
-	}
-	
 	public static JSONObject GetJSON() throws ParserConfigurationException, IOException 
 	{
 		return JenkinsXMLToJSON.GetJenkinsJSON();

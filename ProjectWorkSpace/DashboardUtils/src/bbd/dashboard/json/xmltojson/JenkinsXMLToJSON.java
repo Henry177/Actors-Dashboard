@@ -1,4 +1,4 @@
-package XMLToJSONBuilders;
+package bbd.dashboard.json.xmltojson;
 
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import GeneratorDataProvider.PathProvider;
 import bbd.dashboard.Log;
+import bbd.dashboard.json.provider.PathProvider;
 
 public class JenkinsXMLToJSON
 {

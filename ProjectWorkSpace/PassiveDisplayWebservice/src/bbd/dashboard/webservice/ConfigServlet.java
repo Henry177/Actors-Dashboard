@@ -1,6 +1,8 @@
 package bbd.dashboard.webservice;
 
-public class ConfigServlet extends HttpServlet{
+import javax.servlet.http.HttpServlet;
+
+public class ConfigServlet extends HttpServlet {
 
 	
 }

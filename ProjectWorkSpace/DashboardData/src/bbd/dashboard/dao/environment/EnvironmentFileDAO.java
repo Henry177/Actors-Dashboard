@@ -10,13 +10,12 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import com.google.gson.reflect.TypeToken;
 
-import GeneratorDataProvider.JSONSourceObject;
-import MainProvider.JSONProvider;
 import bbd.dashboard.DashboardUtils;
 import bbd.dashboard.Log;
 import bbd.dashboard.Result;
 import bbd.dashboard.dao.StringFilterDAO;
 import bbd.dashboard.dto.EnvironmentDTO;
+import bbd.dashboard.json.provider.JSONProvider;
 
 public class EnvironmentFileDAO implements EnvironmentDAO {
 	
@@ -62,19 +61,19 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 	private Result<String> getEnvironmentsJSON() {
 		Log.info("Start");
 		String json = "";		
-		json = "{\n"
+		/*json = "{\n"
 				+ "\"CorCpp\":{\"Name\":\"CorCpp\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"SUCCESS\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"CorPreProd\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"CoreTrunkCI\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"BUILDING\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"CorePreProd\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"}\n"
-				+ "}";
+				+ "}";*/
 		
-		/*try {
-			//json = JSONProvider.GetJSONFor(JSONSourceObject.JenkinsCore).toJSONString();
+		try {
+			json = JSONProvider.GetJSON().toJSONString();
 			Log.info(json);
-		/*} catch (ParserConfigurationException e) {
+		} catch (ParserConfigurationException e) {
 		} catch (IOException e) {
-		}*/
+		}
 		
 		Log.info("End");
 		Result<String> result = new Result<String>(json);
