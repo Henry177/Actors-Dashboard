@@ -50,6 +50,7 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 		map = DashboardUtils.fromJson(jsonObject, type);
 		Log.info("map=" + map);
 		
+		
 		//add each element of the map to an array list
 		int removed = map.size();
 		Log.info("environments found=" + removed);
