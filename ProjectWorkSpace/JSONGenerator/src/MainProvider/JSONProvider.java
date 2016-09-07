@@ -5,32 +5,20 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.json.simple.JSONObject;
 
-import GeneratorDataProvider.JSONSourceObject;
-import GeneratorDataProvider.PathProvider;
 import XMLToJSONBuilders.JenkinsXMLToJSON;
+import bbd.dashboard.Log;
 
 public class JSONProvider 
 {	
 	public static void main(String[] args) throws ParserConfigurationException, IOException
 	{
-		System.out.println(GetJSONFor(JSONSourceObject.JenkinsCore));
+		Log.logToFile = false;
+		Log.infoEnabled = true;
+		System.out.println(GetJSON());
 	}
 	
-	public static JSONObject GetJSONFor(JSONSourceObject JSONSourceName) throws ParserConfigurationException, IOException 
+	public static JSONObject GetJSON() throws ParserConfigurationException, IOException 
 	{
-		switch (JSONSourceName) 
-		{
-		case JenkinsCore:
-		{
-			return JenkinsCoreJSON();
-		}
-		default:
-			return null;
-		}
-	}
-	
-	private static JSONObject JenkinsCoreJSON() throws ParserConfigurationException, IOException
-	{
-		return JenkinsXMLToJSON.GetJenkinsCoreJSON(PathProvider.JenkinsCoreXMLURL);
+		return JenkinsXMLToJSON.GetJenkinsJSON();
 	}
 }
