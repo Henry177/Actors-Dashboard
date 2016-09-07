@@ -60,28 +60,29 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 	}
 
 	private Result<String> getEnvironmentsJSON() {
+		Log.info("Start");
 		String json = "";		
-		/*json = "{\n"
+		json = "{\n"
 				+ "\"CorCpp\":{\"Name\":\"CorCpp\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"SUCCESS\",\"Timestamp\":\"3534654\"},\n"
 				+ "\"CorPreProd\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"},\n"
-				+ "\"Prod\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"BUILDING\",\"Timestamp\":\"3534654\"},\n"
-				+ "\"Test\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"}\n"
-				+ "}";*/
+				+ "\"CoreTrunkCI\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"BUILDING\",\"Timestamp\":\"3534654\"},\n"
+				+ "\"CorePreProd\":{\"Name\":\"CorPreProd\",\"Building\":\"false\",\"EstimatedDuration\":\"5646\",\"Number\":\"105\",\"Result\":\"FAILED\",\"Timestamp\":\"3534654\"}\n"
+				+ "}";
 		
-		try {
-			json = JSONProvider.GetJSONFor(JSONSourceObject.JenkinsCore).toJSONString();
+		/*try {
+			//json = JSONProvider.GetJSONFor(JSONSourceObject.JenkinsCore).toJSONString();
 			Log.info(json);
-		} catch (ParserConfigurationException e) {
+		/*} catch (ParserConfigurationException e) {
 		} catch (IOException e) {
-		}
+		}*/
 		
+		Log.info("End");
 		Result<String> result = new Result<String>(json);
 		return result;
 	}
 
 	@Override
 	public Result<List<String>> getEnvironmentList() {
-		Log.infoEnabled = true;
 		Log.info("Start");
 		Result<List<String>> result = new Result<>();
 		if(mStringFilter != null) {
@@ -92,7 +93,6 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 		}
 		Log.info("result=" + result);
 		Log.info("End");
-		Log.infoEnabled = false;
 		return result;
 	}
 }
