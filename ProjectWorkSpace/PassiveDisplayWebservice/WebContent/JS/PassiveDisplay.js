@@ -1,6 +1,13 @@
 var myevents = angular.module('environmentsApp', []);
 
 myevents.controller("EnvironmentsController", function ($scope, $http) {
+	$scope.getLength = function(obj) {
+		if(obj) {
+			return Object.keys(obj).length;
+		}
+		return 0;
+	}
+	
 	$http.get('http://localhost:8080/PassiveDisplay/Dashboard').
     success(function (data) {
 			
@@ -57,20 +64,25 @@ myevents.controller("EnvironmentsController", function ($scope, $http) {
 		}
 		
 		$scope.environments = enviro;
-    });
+    }).	
+	error(function(error, status){
+		alert('error:\n' + error + "\nstatus:\n" + status);
+	});
 	
 	$http.get('http://localhost:8080/PassiveDisplay/MsBuildServlet').
     success(function (data) {
         $scope.msbuilds = data;
-    });
+    }).	
+	error(function(error, status){
+		alert('error:\n' + error + "\nstatus:\n" + status);
+	});	
 	
 	$http.get('http://localhost:8080/PassiveDisplay/RedmineServlet').
     success(function (data) {
         $scope.redminList = data;
-    });
-	
-	$scope.getLength = function(obj) {
-	    return Object.keys(obj).length;
-	}
+    }).	
+	error(function(error, status){
+		alert('error:\n' + error + "\nstatus:\n" + status);
+	});
 });
 

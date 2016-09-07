@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<Title>
+			Configuration Page
+		</Title>
+	</head>
+	
+	<body>
+		<div id = "PageSettings" style="padding:10px;border:5px solid">
+			<h3 align = "center">Page Layout Settings</h3>
+				<form action="action_page.php">
+					Text Colour:
+						<select name="Colors">
+							<option value="Colors"></option>
+						</select>					
+					<br><br>					
+					Text size: <input type="number" id="textSize" name="textSize" min="10" max="100">
+					<br><br>
+					Refresh Time: <input type="number" id="refreshtime" name="refreshtime" min="3" max="20">
+					<br><br>
+					<input type="submit" value="Apply Changes">				
+				</form> 
+		</div>
+			<br>
+		<div id = "DropInfoSettings" style="padding:10px;border:5px solid">
+			<h3 align = "center">Drop Settings</h3>
+				<p style="color:red">need to figure this logic</p>
+				<table border="solid">
+				<tr>
+					<td>Environment Name</td>
+					<td>Order Band</td>
+					<td>Should Be Displayed</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="environmentNameDrop"></td>
+					<td><input type="text" name="OrderBandDrop"></td>
+					<td><input type="checkbox" name="toDisplayDrop"></td>
+				</tr>
+			</table>
+		</div>	
+			<br>
+		<div id = "CIInfoSettings" style="padding:10px;border:5px solid">
+			<h3 align = "center">CI Settings</h3>
+			
+			<p style="color:red">this comes from jenkins</p>
+			
+			<table border="solid">
+				<tr>
+					<td>Environment Name</td>
+					<td>Order Band</td>
+					<td>Should Be Displayed</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="environmentNameCI"></td>
+					<td><input type="text" name="OrderBandCI"></td>
+					<td><input type="checkbox" name="toDisplayCI"></td>
+				</tr>
+			</table>
+			<input type="submit" value="Apply Changes">
+		</div>	
+			<br>
+		<div id = "CIInfoSettings" style="padding:10px; border:5px solid">
+			<h3 align = "center">Redmine Settings</h3>			
+			Include Fields:
+			<table border="solid">
+				<tr>
+					<td>Field Name</td>
+					<td>Display</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="fieldName"></td>
+					<td><input type="checkbox" name="toDisplay"></td>
+				</tr>
+			</table>
+			Add Query Id : <input type="text" name="QueryId">
+			<br>
+			<input type="submit" value="Apply Changes">
+		</div>
+	</body>
+</html>
