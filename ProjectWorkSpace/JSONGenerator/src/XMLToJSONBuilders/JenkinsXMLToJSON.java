@@ -103,9 +103,9 @@ public class JenkinsXMLToJSON
 		return jObj;
 	}
 	
-	private String GetItemValue(String name)
+	private static String GetItemValue(String name)
 	{
-		var list = doc.getElementsByTagName(name);
+		NodeList list = doc.getElementsByTagName(name);
 		if(list != null && list.item(0) != null)
 		{
 			return list.item(0).getTextContent();
