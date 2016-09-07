@@ -40,7 +40,7 @@ public class ProblemTicketFileDAO implements ProblemTicketDAO {
 		Log.infoEnabled = true;
 		Log.info("Start");
 		
-		String filename = "../Problems/" + problem.getCode() + ".json";
+		String filename = "../Problems/" + problem.getStatus() + ".json";
 		
 		File problemsFolder = new File(filename);
 		Log.info("tmp=" + problemsFolder.getAbsoluteFile());

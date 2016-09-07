@@ -1,15 +1,14 @@
 package bbd.dashboard.dao.problemticket;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bbd.dashboard.Result;
 import bbd.dashboard.dto.ProblemTicketDTO;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 
 public class ProblemTicketDBDAO implements ProblemTicketDAO {
@@ -62,7 +61,7 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 	 **/
 	@Override
 	public Result<List<ProblemTicketDTO>> getProblemTickets() {
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		Connection connection = getDBConnection();
         	Statement stmt = null;
 		stmt = connection.createStatement();
@@ -74,15 +73,15 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 			while(result.next)
 			{
 				problem = new ProblemTicketDTO();
-				problem.setAssignee(result.getString('Assignee');
-				problem.setTitle(result.getString('Title'));
-				problem.setDescription(result.getString('Description'));
-				problem.setStatus(result.getString('Status'));
-				problem.setEnvironment(result.getString('Environment'));
-				problem.setID(result.getString('Id'));
+				problem.setAssignee(result.getString("Assignee"));
+				problem.setTitle(result.getString("Title"));
+				problem.setDescription(result.getString("Description"));
+				problem.setStatus(result.getString("Status"));
+				problem.setEnvironment(result.getString("Environment"));
+				problem.setID(result.getString("Id"));
 				
 				//image paths searated by ';'
-				String images = result.getString('Images');
+				String images = result.getString("Images");
 				String [] parts = images.split(";");
 				
 				for (int i = 0;i < parts.length,i++)
@@ -90,23 +89,24 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 					problem.addImage(parts[i]);
 				}
 				list.add(problem);
-			}
-			Result<List<ProblemTicketDTO>> results = new Result<List<ProblemTicketDTO>>(list);
+			}*/
+		//Result<List<ProblemTicketDTO>> results = new Result<List<ProblemTicketDTO>>(list);
+		Result<List<ProblemTicketDTO>> results = new Result<List<ProblemTicketDTO>>(new ArrayList<ProblemTicketDTO>());
 			return results;
-		}catch (SQLException e) {
+	/*	}catch (SQLException e) {
 			System.out.println("Exception Message " + e.getLocalizedMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
 		}
-		
+		*/
 	}
 
 	@Override
 	public Result<String> addProblemTicket(ProblemTicketDTO problem) {
 		// TODO Auto-generated method stub
-		Connection connection = getDBConnection();
+		/*Connection connection = getDBConnection();
 		PreparedStatement insertStatement;
 		String InsertQuery = "INSERT INTO BAProblems" + "( Assignee, Title, Description, Status, Environment,Images) values" + "(?,?,?,?,?,?)";
 		
@@ -127,9 +127,9 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 			}
 			insertPreparedStatement.setString(6,Image);
 			insertPreparedStatement.executeUpdate();
-			insertPreparedStatement.close();
-			return Result<String>("success");
-		}         
+			insertPreparedStatement.close();*/
+			return new Result<String>("success");
+	/*	}         
 		catch (SQLException e) {
 			System.out.println("Exception Message " + e.getLocalizedMessage());	
 		} catch (Exception e) {
@@ -137,12 +137,12 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 		} finally {
 			connection.close();
 		}            
-		
+		*/
 	}
 	
 	public Result<String> updateProblemTicket(ProblemTicketDTO problem) {
 		
-		Connection connection = getDBConnection();
+		/*Connection connection = getDBConnection();
 		PreparedStatement updateStatement;
 		String UpdateQuery = "UPDATE BAProblems SET Status=? where Id=?";
 		
@@ -152,16 +152,16 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 			updateStatement.setString(1, problem.getStatus());
 			updateStatement.setString(2, problem.getID());
 			updateStatement.executeUpdate();
-			updateStatement.close();
-			return Result<String>("success");
-		}         
+			updateStatement.close();*/
+			return new Result<String>("success");
+	/*	}         
 		catch (SQLException e) {
 			System.out.println("Exception Message " + e.getLocalizedMessage());	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
-		} 
+		} */
 	}
 	
 	
@@ -170,21 +170,21 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 		PreparedStatement deleteStatement;
 		String DeleteQuery = "Delete BAProblems where Id=?";
 		
-		try
-		{
-			deleteStatement = connection.prepareStatement(InsertQuery);
+		/*try
+		{*/
+			/*deleteStatement = connection.prepareStatement(InsertQuery);
 			deleteStatement.setString(1, problem.getID());
 			deleteStatement.executeUpdate();
-			deleteStatement.close();
-			return Result<String>("success");
-		}         
+			deleteStatement.close();*/
+			return new Result<String>("success");
+	/*	}         
 		catch (SQLException e) {
 			System.out.println("Exception Message " + e.getLocalizedMessage());	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
-		} 
+		} */
 	}
 	
 }
