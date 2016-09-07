@@ -12,12 +12,12 @@ public class ProblemTicketDTO {
 	private String description;
 	private String assignee;
 	private String enviroment;
-	private Int id;
+	private int id;
 	private List<String> images;
 	
-	public ProblemTicketDTO(String code, Date date, String title, String description) {
+	public ProblemTicketDTO(String status, Date date, String title, String description) {
 		super();
-		this.getStatus(code);
+		this.setStatus(status);
 		this.setDate(date);
 		this.setTitle(title);
 		this.setDescription(description);
@@ -29,11 +29,11 @@ public class ProblemTicketDTO {
 	}
 
 	public String getStatus() {
-		return code;
+		return status;
 	}
 
 	public void setStatus(String code) {
-		this.code = code;
+		this.status = code;
 	}
 	
 	public Date getDate() {
