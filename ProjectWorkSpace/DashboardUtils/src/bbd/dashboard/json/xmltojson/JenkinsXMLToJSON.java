@@ -74,7 +74,7 @@ public class JenkinsXMLToJSON
 	@SuppressWarnings({ "unchecked" })
 	private static void getJSONFromXML(NodeList jobs, String env) throws IOException, ParserConfigurationException
 	{	
-		if(jobs != null)
+		if((jobs != null) && (doc != null))
 		{
 			for (int i = 0; i < jobs.getLength(); i++)
 			{
@@ -86,27 +86,27 @@ public class JenkinsXMLToJSON
 				
 				GetXML(currJobURL + "api/xml");
 				NodeList builds = doc.getElementsByTagName("build");
-				
-				JSONObject jobObject = new JSONObject();
-				
-				jobObject.put("Name", currJobName);
-				jobObject.put("Color", jobColor);
-				
-				if(builds.getLength() > 0)
-				{
-					Element thisBuild = (Element) builds.item(0);
-					String buildURL = thisBuild.getElementsByTagName("url").item(0).getTextContent();
 					
-					GetXML(buildURL + "api/xml");						
+					JSONObject jobObject = new JSONObject();
 					
-					jobObject.put("Building", GetItemValue("building"));
-					jobObject.put("Number", GetItemValue("number"));
-					jobObject.put("Result", GetItemValue("result"));
-				}
-				else
-					AddBlankObject(jobObject);
+					jobObject.put("Name", currJobName);
+					jobObject.put("Color", jobColor);
+					
+					if(builds.getLength() > 0)
+					{
+						Element thisBuild = (Element) builds.item(0);
+						String buildURL = thisBuild.getElementsByTagName("url").item(0).getTextContent();
+						
+						GetXML(buildURL + "api/xml");						
+						
+						jobObject.put("Building", GetItemValue("building"));
+						jobObject.put("Number", GetItemValue("number"));
+						jobObject.put("Result", GetItemValue("result"));
+					}
+					else
+						AddBlankObject(jobObject);
 
-				jObj.put(currJobName, jobObject);
+					jObj.put(currJobName, jobObject);
 			}
 		}
 		else

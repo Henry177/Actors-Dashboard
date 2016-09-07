@@ -1,17 +1,17 @@
 <head>
- 	<meta http-equiv="refresh" content="10; URL=http://localhost:8080/PassiveDisplay/">
+ 	<!-- <meta http-equiv="refresh" content="10; URL=http://localhost:8080/PassiveDisplay/"> -->
 	<link href="PassiveDisplay.css" rel="stylesheet" type="text/css" />
 	<title>Acturis Dashboard</title>
 	
-	<script src="JS/angular.min.js"></script>
+	<script src="JS/angular-1.5.8/angular.js"></script>
   	<script src="JS/PassiveDisplay.js"></script> 
 </head>
 <body ng-app="environmentsApp" class=MainDisplayArea>
-	<div  ng-controller="EnvironmentsController" class=BodyDiv>			
+	<div class=BodyDiv>			
 		<div class=InfoSectionStyle>			
-			<div class=DropInfo ng-hide="getLength(msbuilds) == 0">
+			<div ng-controller="MSBuildController" class=DropInfo ng-show="showMSBuildController">
 				<div >
-					<table class="TableStyle DropInfoTableStyle" cellpadding=0 cellspacing=0 ng-repeat="(key, msbuild) in msbuilds" >
+					<table class="TableStyle DropInfoTableStyle" style="height: 103px; "cellpadding=0 cellspacing=0 ng-repeat="(key, msbuild) in msbuilds" >
 						<tr>
 							<td>{{key}}</td>
 						</tr>
@@ -26,7 +26,7 @@
 					</table>					
 				</div>
 			</div>			
-			<div class=CIInfo ng-hide="getLength(environments) == 0">
+			<div ng-controller="JenkinsControler" class="CIInfo" ng-show="showJenkinsControler">
 				<div>
 					<table ng-style="{'background-color': environment.backgroundCol}" class="TableStyle CITableStyle" cellpadding=0 cellspacing=0  ng-repeat="environment in environments">
 						<tr>
