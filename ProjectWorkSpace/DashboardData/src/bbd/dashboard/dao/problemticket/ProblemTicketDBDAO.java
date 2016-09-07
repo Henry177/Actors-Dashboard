@@ -73,12 +73,12 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 			while(result.next)
 			{
 				problem = new ProblemTicketDTO();
-				problem.setAssignee(result.getString("Assignee"));
-				problem.setTitle(result.getString("Title"));
-				problem.setDescription(result.getString("Description"));
-				problem.setStatus(result.getString("Status"));
-				problem.setEnvironment(result.getString("Environment"));
-				problem.setID(result.getString("Id"));
+				problem.setAssignee(result.getString('Assignee');
+				problem.setTitle(result.getString('Title'));
+				problem.setDescription(result.getString('Description'));
+				problem.setStatus(result.getString('Status'));
+				problem.setEnvironment(result.getString('Environment'));
+				problem.setID(result.getInt('Id'));
 				
 				//image paths searated by ';'
 				String images = result.getString("Images");
@@ -140,7 +140,7 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 		*/
 	}
 	
-	public Result<String> updateProblemTicket(ProblemTicketDTO problem) {
+	public Result<String> updateProblemTicketStatus(ProblemTicketDTO problem) {
 		
 		/*Connection connection = getDBConnection();
 		PreparedStatement updateStatement;
@@ -148,9 +148,9 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 		
 		try
 		{
-			updateStatement = connection.prepareStatement(InsertQuery);
+			updateStatement = connection.prepareStatement(UpdateQuery);
 			updateStatement.setString(1, problem.getStatus());
-			updateStatement.setString(2, problem.getID());
+			updateStatement.setInt(2, problem.getID());
 			updateStatement.executeUpdate();
 			updateStatement.close();*/
 			return new Result<String>("success");
@@ -164,6 +164,29 @@ public class ProblemTicketDBDAO implements ProblemTicketDAO {
 		} */
 	}
 	
+public Result<String> updateProblemTicketAssignee(ProblemTicketDTO problem) {
+		
+		Connection connection = getDBConnection();
+		PreparedStatement updateStatement;
+		String UpdateQuery = "UPDATE BAProblems SET Assignee=? where Id=?";
+		
+		try
+		{
+			updateStatement = connection.prepareStatement(UpdateQuery);
+			updateStatement.setString(1, problem.getAssignee());
+			updateStatement.setInt(2, problem.getID());
+			updateStatement.executeUpdate();
+			updateStatement.close();
+			return Result<String>("success");
+		}         
+		catch (SQLException e) {
+			System.out.println("Exception Message " + e.getLocalizedMessage());	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		} 
+	}
 	
 	public Result<String> DeleteProblemTicket(ProblemTicketDTO problem) {
 		Connection connection = getDBConnection();
