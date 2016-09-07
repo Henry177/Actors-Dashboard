@@ -3,8 +3,9 @@
 body.MainDisplayArea {
   	width: 99%;
   	height: 98%;
-    font-size: 50;
+    font-size: 20;
     font-family: monospace;
+	color: #f2994d;
 }
 
 .BodyDiv {
@@ -15,14 +16,15 @@ p.HeaderTextStyle {
 	font-weight: bold;
     font-size: 150%;
 	margin: auto;
+	margin-top: 10px;
+	color: black;
 }
 
-p.InfoTextStyle {
-	display: none;
+p.InfoTextStyle {	
 	font-weight: bold;
     font-size: 100%;
 	margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 10px;	
 }
 
 div.DropInfo table{
@@ -35,22 +37,21 @@ div.CIInfo {
 
 div.InfoSectionStyle {
 	text-align: center;
-	background-color: #53BDD7;
+	background-color: black;
     border-style: solid;
     border-width: 2px;
-    min-height: 30%;
 	display: block;
-    padding-bottom: 10px;
+	height: 98%;
 }
 
 div.RedmineSectionStyle {
 	text-align: center;
 	background-color: #DDCE9D;
-  	height: auto;
+  	height: 62%;
     border-style: solid;
     border-width: 2px;
     border-top-width: 1px;
-	display: block;    
+	display: none;    
     padding-bottom: 10px;
 }
 
@@ -61,7 +62,7 @@ div.ProblemSectionStyle {
     border-style: solid;
     border-width: 2px;
     border-top-width: 1px;
-	display: block;
+	display: none;
     padding-bottom: 10px;
 }
 
@@ -72,30 +73,21 @@ div.ProblemSectionStyle {
 	border-color: black;
 	border-radius: 10px;
     font-size: 100%;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:10px;	
+	min-width: 30%;
 }
 
 .TableStyle td{
 	padding: 5px;
+	color: black;
 }
 
 .DropInfoTableStyle {
+	background-color: #f2f3e7;
 }
 
 .CITableStyle {
-}
-
-
-.BuildingStyle {
-	border-style: solid;
-	background-color: #7EFA69;
-}
-
-.BrokenStyle {
-	border-style: solid;
-	background-color: #FF5454;
-}
-
-.StableStyle {
-	border-style: solid;
-	background-color: #D7FFFD;
+	margin-bottom:10px;
 }

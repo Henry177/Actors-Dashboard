@@ -1,5 +1,5 @@
 <head>
- 	<!--<meta http-equiv="refresh" content="60; URL=http://localhost:8080/PassiveDisplay/">-->
+ 	<meta http-equiv="refresh" content="10; URL=http://localhost:8080/PassiveDisplay/">
 	<link href="PassiveDisplay.css" rel="stylesheet" type="text/css" />
 	<title>Acturis Dashboard</title>
 	
@@ -8,49 +8,29 @@
 </head>
 <body ng-app="environmentsApp" class=MainDisplayArea>
 	<div  ng-controller="EnvironmentsController" class=BodyDiv>			
-		<div class=InfoSectionStyle>
-			<p align="center" class=HeaderTextStyle>Drop Information</p>
-			<div class=DropInfo>
-				<div ng-hide="getLength(msbuilds) != 0">
-					<p align = "center" class=InfoTextStyle>No information to show</p>
-				</div>
-				<div>
-					<table class="DropInfoTableStyle, TableStyle" cellpadding=0 cellspacing=0>
+		<div class=InfoSectionStyle>			
+			<div class=DropInfo ng-hide="getLength(msbuilds) == 0">
+				<div >
+					<table class="TableStyle DropInfoTableStyle" cellpadding=0 cellspacing=0 ng-repeat="(key, msbuild) in msbuilds" >
 						<tr>
-							<td >Environment:</td><td >eee</td>
+							<td>{{key}}</td>
 						</tr>
 						
 						<tr>
-							<td >Revision:</td><td >eee</td>
+							<td>{{msbuild.revision}}</td>
 						</tr>
 					
 						<tr>
-							<td >Status:</td><td >eee</td>
+							<td>{{msbuild.status}}</td>
 						</tr>
-					</table>
+					</table>					
 				</div>
-			</div>
-			<p align="center" class=HeaderTextStyle>Back End CI Information</p>
-			<div class=CIInfo>
-				<div ng-hide="getLength(environment) != 0">
-					<p align = "center" class=InfoTextStyle>No information to show</p>
-				</div>
+			</div>			
+			<div class=CIInfo ng-hide="getLength(environments) == 0">
 				<div>
-					<table class="StableStyle  TableStyle CITableStyle" cellpadding=0 cellspacing=0>
+					<table ng-style="{'background-color': environment.backgroundCol}" class="TableStyle CITableStyle" cellpadding=0 cellspacing=0  ng-repeat="environment in environments">
 						<tr>
-							<td >Environment: eee</td><td >eee</td>
-						</tr>
-						
-						<tr>
-							<td >Build Number: #2345</td><td >eee</td>
-						</tr>
-						
-						<tr>
-							<td >Building: true</td><td >eee</td>
-						</tr>
-
-						<tr>
-							<td >Status: sss</td><td >eee</td>
+							<td>{{environment.Name}} #{{environment.Number }}</td>
 						</tr>
 					</table>
 				</div>
