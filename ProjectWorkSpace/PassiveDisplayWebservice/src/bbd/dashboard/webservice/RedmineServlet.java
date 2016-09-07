@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import com.google.gson.reflect.TypeToken;
 
-import bbd.dashboard.DashboardUtils;
-import bbd.dashboard.Log;
 import bbd.dashboard.dao.redmine.RedmineDAO;
 
 @WebServlet("/RedmineServlet")
 public class RedmineServlet  extends HttpServlet {
 	private static final long serialVersionUID = -5654083149577817261L;
 
-	public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {	
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {	
 		RedmineDAO dao = RedmineDAO.getInstance();
 		
 		List<String> ids = dao.getRedmineId();
