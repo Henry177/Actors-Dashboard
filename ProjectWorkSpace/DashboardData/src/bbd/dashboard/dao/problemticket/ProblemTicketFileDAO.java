@@ -56,6 +56,24 @@ public class ProblemTicketFileDAO implements ProblemTicketDAO {
 		return result;
 	}
 
+	@Override
+	public Result<String> updateProblemTicketStatus(ProblemTicketDTO problem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result<String> updateProblemTicketAssignee(ProblemTicketDTO problem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result<String> DeleteProblemTicket(ProblemTicketDTO problem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }
