@@ -2,10 +2,10 @@ package bbd.dashboard.dao.environment;
 
 import java.util.List;
 
+import bbd.dashboard.Constants;
 import bbd.dashboard.Result;
-import bbd.dashboard.dto.EnvironmentDTO;
 
-public interface EnvironmentDAO {
+public interface EnvironmentDAO extends Constants {
 
 	String ENVIRONMENT_LIST_FILE_NAME = "../Config/EnvironmentFilter.json";
 	

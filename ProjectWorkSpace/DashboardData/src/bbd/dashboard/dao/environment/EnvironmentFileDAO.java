@@ -30,10 +30,12 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 	
 	private EnvironmentFileDAO() {
 		mStringFilter = new StringFilterDAO(ENVIRONMENT_LIST_FILE_NAME);
+		mAvailibleEnvironments = new StringFilterDAO(ENVIRONMENT_CONFIG_FILE);
 	}
 
 	
 	private StringFilterDAO mStringFilter;
+	private StringFilterDAO mAvailibleEnvironments;
 	
 	@Override
 	public Result<String> getEnvironments() {
@@ -41,20 +43,28 @@ public class EnvironmentFileDAO implements EnvironmentDAO {
 		String jsonObject = getEnvironmentsJSON().getValue();
 		Log.info(jsonObject);
 		
-		Map<String, EnvironmentDTO> map = new HashMap<String, EnvironmentDTO>(); 
+		Map<String, EnvironmentDTO> map = new HashMap<String, EnvironmentDTO>();
+		Map<String, EnvironmentDTO> resultMap = new HashMap<String, EnvironmentDTO>();
 
 		Type type = new TypeToken<HashMap<String, EnvironmentDTO>>(){}.getType();
 		map = DashboardUtils.fromJson(jsonObject, type);
 		Log.info("map=" + map);
+		
 		//add each element of the map to an array list
+		int removed = map.size();
+		Log.info("environments found=" + removed);
 		if(!getEnvironmentList().isError())
 			for(String s: getEnvironmentList().getValue()) {
 				Log.info(s);
-				map.remove(s);
+				mStringFilter.addString(s);
+				resultMap.put(s, map.get(s));
 			}
+		removed -= resultMap.size();
 		
-		Result<String> result = new Result<String>(DashboardUtils.toJson(map, type));
-		Log.info("End");		
+		Log.info("environments removed=" + removed);
+		
+		Result<String> result = new Result<String>(DashboardUtils.toJson(resultMap, type));
+		Log.info("End");	
 		return result;
 	}
 

@@ -30,8 +30,6 @@ public class DashboardDAO {
 	}
 	
 	public void getConnection() {
-		Log.infoEnabled = true;
-		Log.errorEnabled = true;
 		Log.info("Start");
 		try {
 			Connection connection = DriverManager.getConnection("java:jboss/datasources/DashboardDS");
@@ -40,7 +38,6 @@ public class DashboardDAO {
 			Log.error(e);
 		}
 		Log.info("End");
-		Log.infoEnabled = false;
 	}
 	
 }

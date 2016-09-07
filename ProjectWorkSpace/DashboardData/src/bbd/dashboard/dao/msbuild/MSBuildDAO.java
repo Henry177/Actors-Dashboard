@@ -31,14 +31,10 @@ public class MSBuildDAO implements Constants
 	
 	public void updateDropStatus(String environment, MSBuildDTO info)
 	{
-		Log.infoEnabled = true;
-		Log.errorEnabled = true;
 		Log.info("Start");
 		data.put(environment, info);
 		saveData();
 		Log.info("End");
-		Log.errorEnabled = false;
-		Log.infoEnabled = false;
 	}
 	
 	public Map<String, MSBuildDTO> getDropStatus()

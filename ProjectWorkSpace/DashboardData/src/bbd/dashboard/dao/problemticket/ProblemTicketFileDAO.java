@@ -37,7 +37,6 @@ public class ProblemTicketFileDAO implements ProblemTicketDAO {
 
 	@Override
 	public Result<String> addProblemTicket(ProblemTicketDTO problem) {
-		Log.infoEnabled = true;
 		Log.info("Start");
 		
 		String filename = "../Problems/" + problem.getStatus() + ".json";
@@ -51,7 +50,6 @@ public class ProblemTicketFileDAO implements ProblemTicketDAO {
 		
 		
 		Log.info("End");
-		Log.infoEnabled = false;
 		Result<String> result = new Result<String>("Succes");
 		return result;
 	}
