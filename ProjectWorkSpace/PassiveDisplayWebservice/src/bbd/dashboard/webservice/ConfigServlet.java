@@ -1,12 +1,15 @@
-package bbd.dashboard.webservice;
+package src.bbd.dashboard.webservice;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import bbd.dashboard.DashboardUtils;
+import src.bbd.dashboard.dto.MSBuildDTO;
 
+import src.bbd.dashboard.dto.EnvironmentDTO;
+import src.bbd.dashboard.dto.MSBuildDTO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.reflect.TypeToken;
 
-import bbd.dashboard.DashboardUtils;
-import bbd.dashboard.dto.EnvironmentDTO;
-import bbd.dashboard.dto.MSBuildDTO;
+
 
 public class ConfigServlet extends HttpServlet implements ServletConstants{
 	
@@ -41,7 +42,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 			
 			if (msbuild != null)
 			{
-				int i = ;
+				int i = 0;
 				 for (Map.Entry<String,MSBuildDTO>  entry :  msbuild.entrySet())
 				 {
 					 //Set <String> env =  msbuild.keySet();
@@ -53,8 +54,8 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 				 }
 			}
 			
-			Type mapType = new TypeToken<Map<, >>(){}.getType();
-			Map<,> redmineDate = DashboardUtils.readJsonFile(ENVIRONMENT_LIST_FILE_NAME, mapType);
+			Type mapType = new TypeToken<Map<String,EnvironmentDTO >>(){}.getType();
+			Map<String,EnvironmentDTO> jenkinsDate = DashboardUtils.readJsonFile(ENVIRONMENT_LIST_FILE_NAME, mapType);
 			
 			if (jenkinsDate != null)
 			{
@@ -93,8 +94,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 					 i++;
 				 }
 			}
-			//Type myType = new TypeToken<Map<String, EnvironmentDTO>>(){}.getType();
-			Type type = new TypeToken<Map<String, EnvironmentDTO>>(){}.getType();
+			Type mapTypeenv = new TypeToken<Map<String,EnvironmentDTO>>(){}.getType();
 			Map<String,EnvironmentDTO> jenkinsDate = DashboardUtils.readJsonFile(ENVIRONMENT_LIST_FILE_NAME, mapType);
 			
 			if (jenkinsDate != null)
@@ -117,13 +117,9 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 			}
 			
 			response.getWriter().append(DashboardUtils.toJson(data, mapType));
-		}
-		
-		
-		
 	}
 	
-	public void doPostPageLayput(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException 
+	public void doPostPageLayput(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException 
 	{
 		data = DashboardUtils.readJsonFile(CONFIG_FILE, mapType);
 		String color = request.getParameter('Color');
@@ -142,7 +138,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 			data.replace("PageLayput",list);
 			DashboardUtils.writeJsonFile(CONFIG_FILE,data,mapType);
 		}
-		response.getWriter().append(DashboardUtils.toJson('Success', String));
+		response.getWriter().append(DashboardUtils.toJson("Success", String));
 	}
 	
 	public void doPostDropSettings(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException
@@ -165,6 +161,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 				list.add(displayDrop[i]);
 				data.put("DropSettings"+i, list);
 			}
+		}
 		else
 		{
 				for (int i=0;i < environment.length;i++)
@@ -184,10 +181,9 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 					
 				}
 			}
-		}
 		//data.put("DropSettings", list);
 		DashboardUtils.writeJsonFile(CONFIG_FILE,data,mapType);
-		response.getWriter().append(DashboardUtils.toJson('Success', String));
+		response.getWriter().append(DashboardUtils.toJson("Success",String));
 	}
 	
 	public void doPostCISettings(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException
@@ -211,6 +207,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 				list.add(displayDrop[i]);
 				data.put("CISettings"+i, list);
 			}
+		}
 		else
 		{
 				for (int i=0;i < environment.length;i++)
@@ -230,12 +227,12 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 					
 				}
 			}
-		}
+		
 		DashboardUtils.writeJsonFile(CONFIG_FILE,data,mapType);
-		response.getWriter().append(DashboardUtils.toJson('Success', String));
+		response.getWriter().append(DashboardUtils.toJson("Success", String));
 	}
 	
-	public void doPostRedmine(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException
+	public void doPostRedmine(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
 	{
 		String [] field =  request.getParameter('fieldName');
 		// for true and  for false
@@ -278,6 +275,7 @@ public class ConfigServlet extends HttpServlet implements ServletConstants{
 		}
 		
 		DashboardUtils.writeJsonFile(CONFIG_FILE,data,mapType);
-		response.getWriter().append(DashboardUtils.toJson('Success',String));
+		//String suc = 
+		response.getWriter().append(DashboardUtils.toJson("Success",String));
 	}
 }
